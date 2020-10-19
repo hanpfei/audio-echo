@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    ndkVersion '21.2.6472646'
+    // ndkVersion '21.2.6472646'
 
     defaultConfig {
         applicationId 'com.google.sample.echo'
@@ -17,11 +17,16 @@ android {
         versionName '1.0'
         externalNativeBuild {
             cmake {
-                arguments '-DANDROID_STL=c++_static'
+                arguments '-DANDROID_STL=c++_static', "-DCMAKE_BUILD_TYPE=Debug"
             }
         }
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            jniDebuggable true
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'),

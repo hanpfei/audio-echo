@@ -50,6 +50,7 @@ void AudioRecorder::ProcessSLCallback(SLAndroidSimpleBufferQueueItf bq) {
 
   // should leave the device to sleep to save power if no buffers
   if (devShadowQueue_->size() == 0) {
+    LOGI("devShadowQueue size is 0, stop recording");
     (*recItf_)->SetRecordState(recItf_, SL_RECORDSTATE_STOPPED);
   }
 }

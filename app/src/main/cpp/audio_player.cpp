@@ -31,6 +31,7 @@ void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *ctx) {
   (static_cast<AudioPlayer *>(ctx))->ProcessSLCallback(bq);
 }
 void AudioPlayer::ProcessSLCallback(SLAndroidSimpleBufferQueueItf bq) {
+  LOGI("AudioPlayer::ProcessSLCallback");
 #ifdef ENABLE_LOG
   logFile_->logTime();
 #endif

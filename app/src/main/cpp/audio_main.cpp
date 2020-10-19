@@ -52,6 +52,11 @@ bool EngineService(void *ctx, uint32_t msg, void *data);
 JNIEXPORT void JNICALL Java_com_google_sample_echo_MainActivity_createSLEngine(
     JNIEnv *env, jclass type, jint sampleRate, jint framesPerBuf,
     jlong delayInMs, jfloat decay) {
+    LOGI("MainActivity_createSLEngine delayInMs %ld, sample rate %u, framesPerBuf %u, decay %f",
+            static_cast<long>(delayInMs),
+            sampleRate,
+            static_cast<uint32_t>(framesPerBuf),
+            decay);
   SLresult result;
   memset(&engine, 0, sizeof(engine));
 
@@ -104,6 +109,7 @@ JNIEXPORT jboolean JNICALL
 Java_com_google_sample_echo_MainActivity_configureEcho(JNIEnv *env, jclass type,
                                                        jint delayInMs,
                                                        jfloat decay) {
+  LOGI("MainActivity_configureEcho delayInMs %d, decay %f", static_cast<int>(delayInMs), decay);
   engine.echoDelay_ = delayInMs;
   engine.echoDecay_ = decay;
 
@@ -115,6 +121,7 @@ Java_com_google_sample_echo_MainActivity_configureEcho(JNIEnv *env, jclass type,
 JNIEXPORT jboolean JNICALL
 Java_com_google_sample_echo_MainActivity_createSLBufferQueueAudioPlayer(
     JNIEnv *env, jclass type) {
+  LOGI("MainActivity_createSLBufferQueueAudioPlayer");
   SampleFormat sampleFormat;
   memset(&sampleFormat, 0, sizeof(sampleFormat));
   sampleFormat.pcmFormat_ = (uint16_t)engine.bitsPerSample_;
@@ -137,6 +144,7 @@ Java_com_google_sample_echo_MainActivity_createSLBufferQueueAudioPlayer(
 JNIEXPORT void JNICALL
 Java_com_google_sample_echo_MainActivity_deleteSLBufferQueueAudioPlayer(
     JNIEnv *env, jclass type) {
+  LOGI("MainActivity_deleteSLBufferQueueAudioPlayer");
   if (engine.player_) {
     delete engine.player_;
     engine.player_ = nullptr;
@@ -153,6 +161,10 @@ Java_com_google_sample_echo_MainActivity_createAudioRecorder(JNIEnv *env,
   // SampleFormat.representation_ = SL_ANDROID_PCM_REPRESENTATION_SIGNED_INT;
   sampleFormat.channels_ = engine.sampleChannels_;
   sampleFormat.sampleRate_ = engine.fastPathSampleRate_;
+
+  LOGI("MainActivity_createAudioRecorder Sample channels %u, sample rate %u", sampleFormat.channels_,
+       sampleFormat.sampleRate_);
+
   sampleFormat.framesPerBuf_ = engine.fastPathFramesPerBuf_;
   engine.recorder_ = new AudioRecorder(&sampleFormat, engine.slEngineItf_);
   if (!engine.recorder_) {
@@ -166,6 +178,7 @@ Java_com_google_sample_echo_MainActivity_createAudioRecorder(JNIEnv *env,
 JNIEXPORT void JNICALL
 Java_com_google_sample_echo_MainActivity_deleteAudioRecorder(JNIEnv *env,
                                                              jclass type) {
+  LOGI("MainActivity_deleteAudioRecorder");
   if (engine.recorder_) delete engine.recorder_;
 
   engine.recorder_ = nullptr;
@@ -173,6 +186,7 @@ Java_com_google_sample_echo_MainActivity_deleteAudioRecorder(JNIEnv *env,
 
 JNIEXPORT void JNICALL
 Java_com_google_sample_echo_MainActivity_startPlay(JNIEnv *env, jclass type) {
+  LOGI("MainActivity_startPlay");
   engine.frameCount_ = 0;
   /*
    * start player: make it into waitForData state
@@ -186,6 +200,7 @@ Java_com_google_sample_echo_MainActivity_startPlay(JNIEnv *env, jclass type) {
 
 JNIEXPORT void JNICALL
 Java_com_google_sample_echo_MainActivity_stopPlay(JNIEnv *env, jclass type) {
+  LOGI("MainActivity_stopPlay");
   engine.recorder_->Stop();
   engine.player_->Stop();
 
@@ -197,6 +212,7 @@ Java_com_google_sample_echo_MainActivity_stopPlay(JNIEnv *env, jclass type) {
 
 JNIEXPORT void JNICALL Java_com_google_sample_echo_MainActivity_deleteSLEngine(
     JNIEnv *env, jclass type) {
+  LOGI("MainActivity_deleteSLEngine");
   delete engine.recBufQueue_;
   delete engine.freeBufQueue_;
   releaseSampleBufs(engine.bufs_, engine.bufCount_);
@@ -238,12 +254,15 @@ bool EngineService(void *ctx, uint32_t msg, void *data) {
   assert(ctx == &engine);
   switch (msg) {
     case ENGINE_SERVICE_MSG_RETRIEVE_DUMP_BUFS: {
+      LOGI("EngineService msg ENGINE_SERVICE_MSG_RETRIEVE_DUMP_BUFS");
       *(static_cast<uint32_t *>(data)) = dbgEngineGetBufCount();
       break;
     }
     case ENGINE_SERVICE_MSG_RECORDED_AUDIO_AVAILABLE: {
       // adding audio delay effect
       sample_buf *buf = static_cast<sample_buf *>(data);
+      LOGI("EngineService msg ENGINE_SERVICE_MSG_RECORDED_AUDIO_AVAILABLE, buffer size %u", buf->size_);
+
       assert(engine.fastPathFramesPerBuf_ ==
              buf->size_ / engine.sampleChannels_ / (engine.bitsPerSample_ / 8));
       engine.delayEffect_->process(reinterpret_cast<int16_t *>(buf->buf_),
