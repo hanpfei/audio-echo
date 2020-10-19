@@ -1,0 +1,2 @@
+ninja: Entering directory `/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/x86_64'
+ninja: no work to do.

@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/home/hanpfei/data/tools/Android/android-ndk-r21b/build/cmake/platforms.cmake",
+    "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/CMakeLists.txt",
+    "/home/hanpfei/data/tools/Android/android-ndk-r21b/build/cmake/android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "/home/hanpfei/data/tools/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "/home/hanpfei/data/tools/Android/Sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "echo-Debug-arm64-v8a": {
+      "artifactName": "echo",
+      "buildCommand": "/home/hanpfei/data/tools/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/arm64-v8a\" echo",
+      "abi": "arm64-v8a",
+      "output": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/build/intermediates/cmake/debug/obj/arm64-v8a/libecho.so",
+      "runtimeFiles": []
+    }
+  }
+}

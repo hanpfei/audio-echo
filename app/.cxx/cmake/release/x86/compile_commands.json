@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/x86",
+  "command": "/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android23 --gcc-toolchain=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Decho_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -Wall -Werror -o CMakeFiles/echo.dir/audio_main.cpp.o -c /home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_main.cpp",
+  "file": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_main.cpp"
+},
+
+{
+  "directory": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/x86",
+  "command": "/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android23 --gcc-toolchain=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Decho_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -Wall -Werror -o CMakeFiles/echo.dir/audio_player.cpp.o -c /home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_player.cpp",
+  "file": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_player.cpp"
+},
+
+{
+  "directory": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/x86",
+  "command": "/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android23 --gcc-toolchain=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Decho_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -Wall -Werror -o CMakeFiles/echo.dir/audio_recorder.cpp.o -c /home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_recorder.cpp",
+  "file": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_recorder.cpp"
+},
+
+{
+  "directory": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/x86",
+  "command": "/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android23 --gcc-toolchain=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Decho_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -Wall -Werror -o CMakeFiles/echo.dir/audio_effect.cpp.o -c /home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_effect.cpp",
+  "file": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_effect.cpp"
+},
+
+{
+  "directory": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/x86",
+  "command": "/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android23 --gcc-toolchain=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Decho_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -Wall -Werror -o CMakeFiles/echo.dir/audio_common.cpp.o -c /home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_common.cpp",
+  "file": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/audio_common.cpp"
+},
+
+{
+  "directory": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/x86",
+  "command": "/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android23 --gcc-toolchain=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/hanpfei/data/tools/Android/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Decho_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -Wall -Werror -o CMakeFiles/echo.dir/debug_utils.cpp.o -c /home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/debug_utils.cpp",
+  "file": "/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/src/main/cpp/debug_utils.cpp"
+}
+]

@@ -1,0 +1,8 @@
+{
+  "ndkVersionFromDsl": "21.2.6472646",
+  "sdkFolder": "/home/hanpfei/data/tools/Android/Sdk",
+  "sideBySideNdkFolderNames": [
+    "21.2.6472646",
+    "21.0.6113669"
+  ]
+}

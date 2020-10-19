@@ -1,0 +1,3 @@
+/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/echo.dir
