@@ -1,7 +1,0 @@
-Executable : /home/hanpfei/data/tools/Android/Sdk/cmake/3.10.2.4988404/bin/ninja
-arguments : 
--C
-/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/x86_64
-echo
-jvmArgs : 
-

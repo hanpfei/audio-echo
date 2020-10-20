@@ -1,3 +1,0 @@
-/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/x86/CMakeFiles/rebuild_cache.dir
-/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/x86/CMakeFiles/edit_cache.dir
-/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/x86/CMakeFiles/echo.dir

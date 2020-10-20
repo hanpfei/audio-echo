@@ -1,2 +1,0 @@
-ninja: Entering directory `/home/hanpfei/dev_data/home/hanpfei/data/OpenSource/ndk-samples/audio-echo/app/.cxx/cmake/debug/armeabi-v7a'
-ninja: no work to do.
