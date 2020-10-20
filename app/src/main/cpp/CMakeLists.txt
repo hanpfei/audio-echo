@@ -8,7 +8,8 @@ add_library(echo
     audio_recorder.cpp
     audio_effect.cpp
     audio_common.cpp
-    debug_utils.cpp)
+    debug_utils.cpp
+    jni_helper.cpp)
 
 #include libraries needed for echo lib
 target_link_libraries(echo
