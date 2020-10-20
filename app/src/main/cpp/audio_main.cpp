@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "jni_helper.h"
 #include "jni_interface.h"
 #include "audio_recorder.h"
 #include "audio_player.h"
@@ -49,7 +50,7 @@ static EchoAudioEngine engine;
 
 bool EngineService(void *ctx, uint32_t msg, void *data);
 
-JNIEXPORT void JNICALL Java_com_google_sample_echo_MainActivity_createSLEngine(
+JNIEXPORT void JNICALL MainActivity_createSLEngine(
     JNIEnv *env, jclass type, jint sampleRate, jint framesPerBuf,
     jlong delayInMs, jfloat decay) {
     LOGI("MainActivity_createSLEngine delayInMs %ld, sample rate %u, framesPerBuf %u, decay %f",
@@ -106,7 +107,7 @@ JNIEXPORT void JNICALL Java_com_google_sample_echo_MainActivity_createSLEngine(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_google_sample_echo_MainActivity_configureEcho(JNIEnv *env, jclass type,
+MainActivity_configureEcho(JNIEnv *env, jclass type,
                                                        jint delayInMs,
                                                        jfloat decay) {
   LOGI("MainActivity_configureEcho delayInMs %d, decay %f", static_cast<int>(delayInMs), decay);
@@ -119,7 +120,7 @@ Java_com_google_sample_echo_MainActivity_configureEcho(JNIEnv *env, jclass type,
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_google_sample_echo_MainActivity_createSLBufferQueueAudioPlayer(
+MainActivity_createSLBufferQueueAudioPlayer(
     JNIEnv *env, jclass type) {
   LOGI("MainActivity_createSLBufferQueueAudioPlayer");
   SampleFormat sampleFormat;
@@ -142,7 +143,7 @@ Java_com_google_sample_echo_MainActivity_createSLBufferQueueAudioPlayer(
 }
 
 JNIEXPORT void JNICALL
-Java_com_google_sample_echo_MainActivity_deleteSLBufferQueueAudioPlayer(
+MainActivity_deleteSLBufferQueueAudioPlayer(
     JNIEnv *env, jclass type) {
   LOGI("MainActivity_deleteSLBufferQueueAudioPlayer");
   if (engine.player_) {
@@ -152,7 +153,7 @@ Java_com_google_sample_echo_MainActivity_deleteSLBufferQueueAudioPlayer(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_google_sample_echo_MainActivity_createAudioRecorder(JNIEnv *env,
+MainActivity_createAudioRecorder(JNIEnv *env,
                                                              jclass type) {
   SampleFormat sampleFormat;
   memset(&sampleFormat, 0, sizeof(sampleFormat));
@@ -176,7 +177,7 @@ Java_com_google_sample_echo_MainActivity_createAudioRecorder(JNIEnv *env,
 }
 
 JNIEXPORT void JNICALL
-Java_com_google_sample_echo_MainActivity_deleteAudioRecorder(JNIEnv *env,
+MainActivity_deleteAudioRecorder(JNIEnv *env,
                                                              jclass type) {
   LOGI("MainActivity_deleteAudioRecorder");
   if (engine.recorder_) delete engine.recorder_;
@@ -185,7 +186,7 @@ Java_com_google_sample_echo_MainActivity_deleteAudioRecorder(JNIEnv *env,
 }
 
 JNIEXPORT void JNICALL
-Java_com_google_sample_echo_MainActivity_startPlay(JNIEnv *env, jclass type) {
+MainActivity_startPlay(JNIEnv *env, jclass type) {
   LOGI("MainActivity_startPlay");
   engine.frameCount_ = 0;
   /*
@@ -199,7 +200,7 @@ Java_com_google_sample_echo_MainActivity_startPlay(JNIEnv *env, jclass type) {
 }
 
 JNIEXPORT void JNICALL
-Java_com_google_sample_echo_MainActivity_stopPlay(JNIEnv *env, jclass type) {
+MainActivity_stopPlay(JNIEnv *env, jclass type) {
   LOGI("MainActivity_stopPlay");
   engine.recorder_->Stop();
   engine.player_->Stop();
@@ -210,7 +211,7 @@ Java_com_google_sample_echo_MainActivity_stopPlay(JNIEnv *env, jclass type) {
   engine.player_ = NULL;
 }
 
-JNIEXPORT void JNICALL Java_com_google_sample_echo_MainActivity_deleteSLEngine(
+JNIEXPORT void JNICALL MainActivity_deleteSLEngine(
     JNIEnv *env, jclass type) {
   LOGI("MainActivity_deleteSLEngine");
   delete engine.recBufQueue_;
@@ -275,4 +276,45 @@ bool EngineService(void *ctx, uint32_t msg, void *data) {
   }
 
   return true;
+}
+
+// Dalvik VM type signatures
+static const JNINativeMethod gMethods[] = {
+        NATIVE_METHOD(MainActivity, createSLEngine, "(IIJF)V"),
+        NATIVE_METHOD(MainActivity, configureEcho, "(IF)Z"),
+        NATIVE_METHOD(MainActivity, createSLBufferQueueAudioPlayer, "()Z"),
+        NATIVE_METHOD(MainActivity, deleteSLBufferQueueAudioPlayer, "()V"),
+        NATIVE_METHOD(MainActivity, createAudioRecorder, "()Z"),
+        NATIVE_METHOD(MainActivity, deleteAudioRecorder, "()V"),
+        NATIVE_METHOD(MainActivity, startPlay, "()V"),
+        NATIVE_METHOD(MainActivity, stopPlay, "()V"),
+        NATIVE_METHOD(MainActivity, deleteSLEngine, "()V"),
+};
+
+int jniRegisterNativeMethods(JNIEnv* env, const char *classPathName,
+        const JNINativeMethod *nativeMethods, jint nMethods) {
+    jclass clazz;
+    clazz = env->FindClass(classPathName);
+    if (clazz == NULL) {
+        LOGW("Native registration unable to find class '%s'", classPathName);
+        return JNI_FALSE;
+    }
+    if (env->RegisterNatives(clazz, nativeMethods, nMethods) < 0) {
+        LOGW("RegisterNatives failed for '%s'", classPathName);
+        return JNI_FALSE;
+    }
+    return JNI_TRUE;
+}
+
+// DalvikVM calls this on startup, so we can statically register all our native methods.
+jint JNI_OnLoad(JavaVM* vm, void*) {
+    JNIEnv* env = nullptr;
+    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+        LOGE("JavaVM::GetEnv() failed");
+        abort();
+    }
+    jniRegisterNativeMethods(env, "com/google/sample/echo/MainActivity",
+                             gMethods, NELEM(gMethods));
+
+    return JNI_VERSION_1_6;
 }
