@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "audio/opensles_recorder.h"
+#include "audio/opensles_player.h"
+#include "audio/audio_effect.h"
+#include "audio/audio_common.h"
 #include "jni_helper.h"
-#include "jni_interface.h"
-#include "audio_recorder.h"
-#include "audio_player.h"
-#include "audio_effect.h"
-#include "audio_common.h"
 
 #include <SLES/OpenSLES_Android.h>
 #include <sys/types.h>
@@ -78,7 +77,7 @@ JNIEXPORT void JNICALL MainActivity_createSLEngine(
                            &engine.slEngineItf_);
     SLASSERT(result);
 
-    // compute the RECOMMENDED fast audio buffer size:
+    // compute the RECOMMENDED fast src.audio buffer size:
     //   the lower latency required
     //     *) the smaller the buffer should be (adjust it here) AND
     //     *) the less buffering should be before starting player AFTER
@@ -261,7 +260,7 @@ bool EngineService(void *ctx, uint32_t msg, void *data) {
             break;
         }
         case ENGINE_SERVICE_MSG_RECORDED_AUDIO_AVAILABLE: {
-            // adding audio delay effect
+            // adding src.audio delay effect
             sample_buf *buf = static_cast<sample_buf *>(data);
             LOGI("EngineService msg ENGINE_SERVICE_MSG_RECORDED_AUDIO_AVAILABLE, buffer size %u",
                  buf->size_);

@@ -20,7 +20,7 @@
 
 
 
-// This callback handles mono in, stereo out synchronized audio passthrough.
+// This callback handles mono in, stereo out synchronized src.audio passthrough.
 // It takes a function which operates on two pointers (beginning and end)
 // of underlying data.
 

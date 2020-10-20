@@ -120,7 +120,7 @@ Result AudioOutputStreamOpenSLES::open() {
         return Result::ErrorInvalidFormat;
     }
 
-    // If audio format is unspecified then choose a suitable default.
+    // If src.audio format is unspecified then choose a suitable default.
     // API 21+: FLOAT
     // API <21: INT16
     if (mFormat == AudioFormat::Unspecified){
@@ -139,12 +139,12 @@ Result AudioOutputStreamOpenSLES::open() {
 
     SLuint32 bitsPerSample = static_cast<SLuint32>(getBytesPerSample() * kBitsPerByte);
 
-    // configure audio source
+    // configure src.audio source
     SLDataLocator_AndroidSimpleBufferQueue loc_bufq = {
             SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,    // locatorType
             static_cast<SLuint32>(kBufferQueueLength)};   // numBuffers
 
-    // Define the audio data format.
+    // Define the src.audio data format.
     SLDataFormat_PCM format_pcm = {
             SL_DATAFORMAT_PCM,       // formatType
             static_cast<SLuint32>(mChannelCount),           // numChannels

@@ -115,7 +115,7 @@ class AudioRecordThread implements Runnable {
                 mTaskCountdown -= numSamplesRead;
                 if (mTaskCountdown <= 0) {
                     mTaskCountdown = 0;
-                    new Thread(mTask).start(); // run asynchronously with audio thread
+                    new Thread(mTask).start(); // run asynchronously with src.audio thread
                 }
             }
             if (mCaptureEnabled) {

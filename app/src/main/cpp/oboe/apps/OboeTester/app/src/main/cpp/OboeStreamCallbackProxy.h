@@ -47,7 +47,7 @@ public:
     }
 
     /**
-     * Called when the stream is ready to process audio.
+     * Called when the stream is ready to process src.audio.
      */
     oboe::DataCallbackResult onAudioReady(
             oboe::AudioStream *audioStream,

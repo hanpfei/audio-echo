@@ -28,9 +28,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.sample.oboe.manualtest.R;
@@ -227,7 +225,7 @@ public class TestInputActivity  extends TestAudioActivity
         int result = saveWaveFile(file);
         if (result > 0) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("audio/wav");
+            sharingIntent.setType("src/audio/wav");
             String subjectText = file.getName();
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subjectText);
             Uri uri = FileProvider.getUriForFile(this,

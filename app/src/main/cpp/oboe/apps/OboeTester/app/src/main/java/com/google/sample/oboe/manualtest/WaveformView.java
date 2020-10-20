@@ -28,7 +28,7 @@ import android.view.View;
 import com.google.sample.oboe.manualtest.R;
 
 /**
- * Display an audio waveform in a custom View.
+ * Display an src.audio waveform in a custom View.
  */
 public class WaveformView extends View {
     private Paint mWavePaint;

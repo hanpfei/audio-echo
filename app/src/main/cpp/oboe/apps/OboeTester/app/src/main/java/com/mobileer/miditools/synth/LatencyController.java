@@ -17,7 +17,7 @@
 package com.mobileer.miditools.synth;
 
 /**
- * Abstract control over the audio latency.
+ * Abstract control over the src.audio latency.
  */
 public abstract class LatencyController {
     private boolean mLowLatencyEnabled;

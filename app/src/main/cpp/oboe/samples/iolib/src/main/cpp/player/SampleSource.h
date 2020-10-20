@@ -26,13 +26,13 @@
 namespace iolib {
 
 /**
- * Defines an interface for audio data provided to a player object.
+ * Defines an interface for src.audio data provided to a player object.
  * Concrete examples include OneShotSampleBuffer. One could imagine a LoopingSampleBuffer.
  * Supports stereo position via mPan member.
  */
 class SampleSource: public DataSource {
 public:
-    // Pan position of the audio in a stereo mix
+    // Pan position of the src.audio in a stereo mix
     // [left:-1.0f] <- [center: 0.0f] -> -[right: 1.0f]
     static constexpr float PAN_HARDLEFT = -1.0f;
     static constexpr float PAN_HARDRIGHT = 1.0f;

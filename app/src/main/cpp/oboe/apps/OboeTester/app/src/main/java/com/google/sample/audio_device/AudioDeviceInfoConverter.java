@@ -86,7 +86,7 @@ class AudioDeviceInfoConverter {
      * readable string
      * @param type One of the {@link AudioDeviceInfo}.TYPE_* values
      *             e.g. AudioDeviceInfo.TYPE_BUILT_IN_SPEAKER
-     * @return string which describes the type of audio device
+     * @return string which describes the type of src.audio device
      */
     static String typeToString(int type){
         switch (type) {
@@ -113,7 +113,7 @@ class AudioDeviceInfoConverter {
             case AudioDeviceInfo.TYPE_HDMI:
                 return "HDMI";
             case AudioDeviceInfo.TYPE_HDMI_ARC:
-                return "HDMI audio return channel";
+                return "HDMI src.audio return channel";
             case AudioDeviceInfo.TYPE_IP:
                 return "IP";
             case AudioDeviceInfo.TYPE_LINE_ANALOG:

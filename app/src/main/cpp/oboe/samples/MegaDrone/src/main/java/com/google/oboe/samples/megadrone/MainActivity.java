@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-    // Obtain CPU cores which are reserved for the foreground app. The audio thread can be
+    // Obtain CPU cores which are reserved for the foreground app. The src.audio thread can be
     // bound to these cores to avoids the risk of it being migrated to slower or more contended
     // core(s).
     private int[] getExclusiveCores(){

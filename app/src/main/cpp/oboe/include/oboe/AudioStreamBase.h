@@ -24,7 +24,7 @@
 namespace oboe {
 
 /**
- * Base class containing parameters for audio streams and builders.
+ * Base class containing parameters for src.audio streams and builders.
  **/
 class AudioStreamBase {
 
@@ -67,7 +67,7 @@ public:
     int32_t getFramesPerCallback() const { return mFramesPerCallback; }
 
     /**
-     * @return the audio sample format (e.g. Float or I16)
+     * @return the src.audio sample format (e.g. Float or I16)
      */
     AudioFormat getFormat() const { return mFormat; }
 
@@ -151,27 +151,27 @@ protected:
 
     /** The callback which will be fired when new data is ready to be read/written **/
     AudioStreamCallback            *mStreamCallback = nullptr;
-    /** Number of audio frames which will be requested in each callback */
+    /** Number of src.audio frames which will be requested in each callback */
     int32_t                         mFramesPerCallback = kUnspecified;
     /** Stream channel count */
     int32_t                         mChannelCount = kUnspecified;
     /** Stream sample rate */
     int32_t                         mSampleRate = kUnspecified;
-    /** Stream audio device ID */
+    /** Stream src.audio device ID */
     int32_t                         mDeviceId = kUnspecified;
-    /** Stream buffer capacity specified as a number of audio frames */
+    /** Stream buffer capacity specified as a number of src.audio frames */
     int32_t                         mBufferCapacityInFrames = kUnspecified;
-    /** Stream buffer size specified as a number of audio frames */
+    /** Stream buffer size specified as a number of src.audio frames */
     int32_t                         mBufferSizeInFrames = kUnspecified;
     /**
-     * Number of frames which will be copied to/from the audio device in a single read/write
+     * Number of frames which will be copied to/from the src.audio device in a single read/write
      * operation
      */
     int32_t                         mFramesPerBurst = kUnspecified;
 
     /** Stream sharing mode */
     SharingMode                     mSharingMode = SharingMode::Shared;
-    /** Format of audio frames */
+    /** Format of src.audio frames */
     AudioFormat                     mFormat = AudioFormat::Unspecified;
     /** Stream direction */
     Direction                       mDirection = Direction::Output;

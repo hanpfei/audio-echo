@@ -115,7 +115,7 @@ void Game::onSurfaceDestroyed() {
 
 DataCallbackResult Game::onAudioReady(AudioStream *oboeStream, void *audioData, int32_t numFrames) {
 
-    // If our audio stream is expecting 16-bit samples we need to render our floats into a separate
+    // If our src.audio stream is expecting 16-bit samples we need to render our floats into a separate
     // buffer then convert them into 16-bit ints
     bool is16Bit = (oboeStream->getFormat() == AudioFormat::I16);
     float *outputBuffer = (is16Bit) ? mConversionBuffer.get() : static_cast<float *>(audioData);
@@ -148,7 +148,7 @@ DataCallbackResult Game::onAudioReady(AudioStream *oboeStream, void *audioData, 
 }
 
 void Game::onErrorAfterClose(AudioStream *oboeStream, Result error){
-    LOGE("The audio stream was closed, please restart the game. Error: %s", convertToText(error));
+    LOGE("The src.audio stream was closed, please restart the game. Error: %s", convertToText(error));
 };
 
 /**
@@ -173,7 +173,7 @@ TapResult Game::getTapResult(int64_t tapTimeInMillis, int64_t tapWindowInMillis)
 
 bool Game::openStream() {
 
-    // Create an audio stream
+    // Create an src.audio stream
     AudioStreamBuilder builder;
     builder.setCallback(this);
     builder.setPerformanceMode(PerformanceMode::LowLatency);
@@ -205,7 +205,7 @@ bool Game::openStream() {
 
 bool Game::setupAudioSources() {
 
-    // Set the properties of our audio source(s) to match that of our audio stream
+    // Set the properties of our src.audio source(s) to match that of our src.audio stream
     AudioProperties targetProperties {
             .channelCount = mAudioStream->getChannelCount(),
             .sampleRate = mAudioStream->getSampleRate()

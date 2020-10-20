@@ -23,7 +23,7 @@
 
 /**
  * This can be used to convert a push data flow from variable sized buffers to fixed sized buffers.
- * An example would be an audio input callback.
+ * An example would be an src.audio input callback.
  */
 class FixedBlockWriter : public FixedBlockAdapter
 {

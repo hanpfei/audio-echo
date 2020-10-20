@@ -88,7 +88,7 @@ void WavStreamReader::parse() {
         } else if (tag == WavChunkHeader::RIFFID_DATA) {
             chunk = mDataChunk = new WavChunkHeader(tag);
             mDataChunk->read(mStream);
-            // We are now positioned at the start of the audio data.
+            // We are now positioned at the start of the src.audio data.
             mAudioDataStartPos = mStream->getPos();
             mStream->advance(mDataChunk->mChunkSize);
         } else {

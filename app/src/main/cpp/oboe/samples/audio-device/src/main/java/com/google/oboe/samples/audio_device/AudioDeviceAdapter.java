@@ -25,7 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 /**
- * Provides views for a list of audio devices. Usually used as an Adapter for a Spinner or ListView.
+ * Provides views for a list of src.audio devices. Usually used as an Adapter for a Spinner or ListView.
  */
 public class AudioDeviceAdapter extends ArrayAdapter<AudioDeviceListEntry> {
 

@@ -18,7 +18,7 @@ package com.google.sample.oboe.manualtest;
 
 
 /**
- * Circular buffer for continuously capturing audio then reading the previous N samples.
+ * Circular buffer for continuously capturing src.audio then reading the previous N samples.
  * Can hold from zero to max frames.
  */
 public class CircularCaptureBuffer {

@@ -53,7 +53,7 @@ namespace oboe {
     constexpr int64_t kNanosPerSecond =         kNanosPerMillisecond * kMillisPerSecond;
 
     /**
-     * The state of the audio stream.
+     * The state of the src.audio stream.
      */
     enum class StreamState : int32_t { // aaudio_stream_state_t
         Uninitialized = 0, // AAUDIO_STREAM_STATE_UNINITIALIZED,
@@ -89,7 +89,7 @@ namespace oboe {
     };
 
     /**
-     * The format of audio samples.
+     * The format of src.audio samples.
      */
     enum class AudioFormat : int32_t { // aaudio_format_t
         /**
@@ -114,7 +114,7 @@ namespace oboe {
     };
 
     /**
-     * The result of an audio callback.
+     * The result of an src.audio callback.
      */
     enum class DataCallbackResult : int32_t { // aaudio_data_callback_result_t
         // Indicates to the caller that the callbacks should continue.
@@ -162,7 +162,7 @@ namespace oboe {
     };
 
     /**
-     * The sharing mode of the audio stream.
+     * The sharing mode of the src.audio stream.
      */
     enum class SharingMode : int32_t { // aaudio_sharing_mode_t
 
@@ -178,8 +178,8 @@ namespace oboe {
 
         /**
          * Multiple applications can share the same device.
-         * The data from output streams will be mixed by the audio service.
-         * The data for input streams will be distributed by the audio service.
+         * The data from output streams will be mixed by the src.audio service.
+         * The data for input streams will be distributed by the src.audio service.
          *
          * This will have higher latency than the EXCLUSIVE mode.
          */
@@ -187,7 +187,7 @@ namespace oboe {
     };
 
     /**
-     * The performance mode of the audio stream.
+     * The performance mode of the src.audio stream.
      */
     enum class PerformanceMode : int32_t { // aaudio_performance_mode_t
 
@@ -208,7 +208,7 @@ namespace oboe {
     };
 
     /**
-     * The underlying audio API used by the audio stream.
+     * The underlying src.audio API used by the src.audio stream.
      */
     enum class AudioApi : int32_t {
         /**
@@ -313,12 +313,12 @@ namespace oboe {
         AssistanceSonification = 13, // AAUDIO_USAGE_ASSISTANCE_SONIFICATION
 
         /**
-         * Use this for game audio and sound effects.
+         * Use this for game src.audio and sound effects.
          */
         Game = 14, // AAUDIO_USAGE_GAME
 
         /**
-         * Use this for audio responses to user queries, audio instructions or help utterances.
+         * Use this for src.audio responses to user queries, src.audio instructions or help utterances.
          */
         Assistant = 16, // AAUDIO_USAGE_ASSISTANT
     };
@@ -329,8 +329,8 @@ namespace oboe {
      * It expresses the general category of the content. This information is optional.
      * But in case it is known (for instance {@link Movie} for a
      * movie streaming service or {@link Speech} for
-     * an audio book application) this information might be used by the audio framework to
-     * enforce audio focus.
+     * an src.audio book application) this information might be used by the src.audio framework to
+     * enforce src.audio focus.
      *
      * Note that these match the equivalent values in AudioAttributes in the Android Java API.
      *
@@ -339,7 +339,7 @@ namespace oboe {
     enum ContentType : int32_t { // aaudio_content_type_t
 
         /**
-         * Use this for spoken voice, audio books, etcetera.
+         * Use this for spoken voice, src.audio books, etcetera.
          */
         Speech = 1, // AAUDIO_CONTENT_TYPE_SPEECH
 
@@ -361,8 +361,8 @@ namespace oboe {
     };
 
     /**
-     * Defines the audio source.
-     * An audio source defines both a default physical source of audio signal, and a recording
+     * Defines the src.audio source.
+     * An src.audio source defines both a default physical source of src.audio signal, and a recording
      * configuration.
      *
      * Note that these match the equivalent values in MediaRecorder.AudioSource in the Android Java API.
@@ -398,7 +398,7 @@ namespace oboe {
         Unprocessed = 9, // AAUDIO_INPUT_PRESET_UNPROCESSED
 
         /**
-         * Use this preset for capturing audio meant to be processed in real time
+         * Use this preset for capturing src.audio meant to be processed in real time
          * and played back for live performance (e.g karaoke).
          * The capture path will minimize latency and coupling with playback path.
          */
@@ -407,7 +407,7 @@ namespace oboe {
     };
 
     /**
-     * This attribute can be used to allocate a session ID to the audio stream.
+     * This attribute can be used to allocate a session ID to the src.audio stream.
      *
      * This attribute only has an effect on Android API 28+.
      */
@@ -430,7 +430,7 @@ namespace oboe {
     };
 
     /**
-     * The channel count of the audio stream. The underlying type is `int32_t`.
+     * The channel count of the src.audio stream. The underlying type is `int32_t`.
      * Use of this enum is convenient to avoid "magic"
      * numbers when specifying the channel count.
      *
@@ -446,12 +446,12 @@ namespace oboe {
       Unspecified = kUnspecified,
 
       /**
-       * Use this for mono audio
+       * Use this for mono src.audio
        */
       Mono = 1,
 
       /**
-       * Use this for stereo audio.
+       * Use this for stereo src.audio.
        */
       Stereo = 2,
     };
@@ -478,11 +478,11 @@ namespace oboe {
 
     public:
 
-        /** The default sample rate to use when opening new audio streams */
+        /** The default sample rate to use when opening new src.audio streams */
         static int32_t SampleRate;
-        /** The default frames per burst to use when opening new audio streams */
+        /** The default frames per burst to use when opening new src.audio streams */
         static int32_t FramesPerBurst;
-        /** The default channel count to use when opening new audio streams */
+        /** The default channel count to use when opening new src.audio streams */
         static int32_t ChannelCount;
 
     };

@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 #include <cstdlib>
-#include "audio_player.h"
+#include "opensles_player.h"
 
 /*
- * Called by OpenSL SimpleBufferQueue for every audio buffer played
+ * Called by OpenSL SimpleBufferQueue for every src.audio buffer played
  * directly pass thru to our handler.
  * The regularity of this callback from openSL/Android System affects
  * playback continuity. If it does not callback in the regular time
- * slot, you are under big pressure for audio processing[here we do
- * not do any filtering/mixing]. Callback from fast audio path are
- * much more regular than other audio paths by my observation. If it
- * very regular, you could buffer much less audio samples between
+ * slot, you are under big pressure for src.audio processing[here we do
+ * not do any filtering/mixing]. Callback from fast src.audio path are
+ * much more regular than other src.audio paths by my observation. If it
+ * very regular, you could buffer much less src.audio samples between
  * recorder and player, hence lower latency.
  */
 void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *ctx) {
@@ -105,7 +105,7 @@ AudioPlayer::AudioPlayer(SampleFormat *sampleFormat, SLEngineItf slEngine)
       (*outputMixObjectItf_)->Realize(outputMixObjectItf_, SL_BOOLEAN_FALSE);
   SLASSERT(result);
 
-  // configure audio source
+  // configure src.audio source
   SLDataLocator_AndroidSimpleBufferQueue loc_bufq = {
       SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE, DEVICE_SHADOW_BUFFER_QUEUE_LEN};
 
@@ -113,12 +113,12 @@ AudioPlayer::AudioPlayer(SampleFormat *sampleFormat, SLEngineItf slEngine)
   ConvertToSLSampleFormat(&format_pcm, &sampleInfo_);
   SLDataSource audioSrc = {&loc_bufq, &format_pcm};
 
-  // configure audio sink
+  // configure src.audio sink
   SLDataLocator_OutputMix loc_outmix = {SL_DATALOCATOR_OUTPUTMIX,
                                         outputMixObjectItf_};
   SLDataSink audioSnk = {&loc_outmix, NULL};
   /*
-   * create fast path audio player: SL_IID_BUFFERQUEUE and SL_IID_VOLUME
+   * create fast path src.audio player: SL_IID_BUFFERQUEUE and SL_IID_VOLUME
    * and other non-signal processing interfaces are ok.
    */
   SLInterfaceID ids[2] = {SL_IID_BUFFERQUEUE, SL_IID_VOLUME};
@@ -170,12 +170,12 @@ AudioPlayer::AudioPlayer(SampleFormat *sampleFormat, SLEngineItf slEngine)
 AudioPlayer::~AudioPlayer() {
   std::lock_guard<std::mutex> lock(stopMutex_);
 
-  // destroy buffer queue audio player object, and invalidate all associated
+  // destroy buffer queue src.audio player object, and invalidate all associated
   // interfaces
   if (playerObjectItf_ != NULL) {
     (*playerObjectItf_)->Destroy(playerObjectItf_);
   }
-  // Consume all non-completed audio buffers
+  // Consume all non-completed src.audio buffers
   sample_buf *buf = NULL;
   while (devShadowQueue_->front(&buf)) {
     buf->size_ = 0;

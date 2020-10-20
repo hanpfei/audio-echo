@@ -2,11 +2,11 @@
 
 [![Introduction to Oboe video](docs/images/getting-started-video.jpg)](https://www.youtube.com/watch?v=csfHAbr5ilI&list=PLWz5rJ2EKKc_duWv9IPNvx9YBudNMmLSa)
 
-Oboe is a C++ library which makes it easy to build high-performance audio apps on Android. It was created primarily to allow developers to target a simplified API that works across multiple API levels back to API level 16 (Jelly Bean).
+Oboe is a C++ library which makes it easy to build high-performance src.audio apps on Android. It was created primarily to allow developers to target a simplified API that works across multiple API levels back to API level 16 (Jelly Bean).
 
 ## Features
 - Compatible with API 16 onwards - runs on 99% of Android devices
-- Chooses the audio API (OpenSL ES on API 16+ or AAudio on API 27+) which will give the best audio performance on the target Android device
+- Chooses the src.audio API (OpenSL ES on API 16+ or AAudio on API 27+) which will give the best src.audio performance on the target Android device
 - Automatic latency tuning
 - Modern C++ allowing you to write clean, elegant code
 - Workarounds for some known issues
@@ -31,8 +31,8 @@ To build Oboe you'll need a compiler which supports C++14 and the Android header
 ## Videos
 - [Getting started with Oboe](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc_duWv9IPNvx9YBudNMmLSa)
 - [Low Latency Audio - Because Your Ears Are Worth It](https://www.youtube.com/watch?v=8vOf_fDtur4) (Android Dev Summit '18)
-- [Real-time audio with the 100 oscillator synthesizer](https://www.youtube.com/watch?v=J04iPJBkAKs) (DroidCon Berlin '18)
-- [Winning on Android](https://www.youtube.com/watch?v=tWBojmBpS74) - How to optimize an Android audio app. (ADC '18)
+- [Real-time src.audio with the 100 oscillator synthesizer](https://www.youtube.com/watch?v=J04iPJBkAKs) (DroidCon Berlin '18)
+- [Winning on Android](https://www.youtube.com/watch?v=tWBojmBpS74) - How to optimize an Android src.audio app. (ADC '18)
 - [Real-Time Processing on Android](https://youtu.be/hY9BrS2uX-c) (ADC '19)
 
 ## Sample code and apps

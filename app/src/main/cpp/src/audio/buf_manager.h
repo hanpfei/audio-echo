@@ -155,9 +155,9 @@ class ProducerConsumerQueue {
 };
 
 struct sample_buf {
-  uint8_t* buf_;   // audio sample container
+  uint8_t* buf_;   // src.audio sample container
   uint32_t cap_;   // buffer capacity in byte
-  uint32_t size_;  // audio sample size (n buf) in byte
+  uint32_t size_;  // src.audio sample size (n buf) in byte
 };
 
 using AudioQueue = ProducerConsumerQueue<sample_buf*>;

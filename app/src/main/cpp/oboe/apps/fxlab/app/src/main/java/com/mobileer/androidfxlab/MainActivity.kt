@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val builder = AlertDialog.Builder(this).apply {
                         setMessage(
-                            "Audio effects require audio input permissions! \n" +
+                            "Audio effects require src.audio input permissions! \n" +
                                     "Enable permissions and restart app to use."
                         )
                         setTitle("Permission Error")

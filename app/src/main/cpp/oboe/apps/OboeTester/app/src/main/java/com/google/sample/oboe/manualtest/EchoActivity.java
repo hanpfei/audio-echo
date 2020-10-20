@@ -25,7 +25,7 @@ import android.widget.TextView;
 import java.io.IOException;
 
 /**
- * Activity to capture audio and then send a delayed copy to output.
+ * Activity to capture src.audio and then send a delayed copy to output.
  * There is a fader for setting delay time
  */
 public class EchoActivity extends TestInputActivity {

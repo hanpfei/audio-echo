@@ -19,7 +19,7 @@ package com.google.sample.oboe.manualtest;
 import java.io.IOException;
 
 /**
- * Base class for any audio input or output.
+ * Base class for any src.audio input or output.
  */
 public abstract class AudioStreamBase {
 

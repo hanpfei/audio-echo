@@ -32,7 +32,7 @@ public:
      * Create a new SoundGenerator object.
      *
      * @param sampleRate - The output sample rate.
-     * @param maxFrames - The maximum number of audio frames which will be rendered, this is used to
+     * @param maxFrames - The maximum number of src.audio frames which will be rendered, this is used to
      * calculate this object's internal buffer size.
      * @param channelCount - The number of channels in the output, one tone will be created for each
      * channel, the output will be interlaced.

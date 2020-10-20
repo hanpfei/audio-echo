@@ -16,7 +16,7 @@
 
 /**
  * Tools for measuring latency and for detecting glitches.
- * These classes are pure math and can be used with any audio system.
+ * These classes are pure math and can be used with any src.audio system.
  */
 
 #ifndef ANALYZER_LATENCY_ANALYZER_H

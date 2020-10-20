@@ -30,7 +30,7 @@ import java.util.Iterator;
 
 /**
  * Very simple polyphonic, single channel synthesizer. It runs a background
- * thread that processes MIDI events and synthesizes audio.
+ * thread that processes MIDI events and synthesizes src.audio.
  */
 public class SynthEngine extends MidiReceiver {
 
@@ -188,7 +188,7 @@ public class SynthEngine extends MidiReceiver {
      *
      */
     private void processMidiEvents() throws IOException {
-        long now = System.nanoTime(); // TODO use audio presentation time
+        long now = System.nanoTime(); // TODO use src.audio presentation time
         MidiEventScheduler.MidiEvent event = (MidiEventScheduler.MidiEvent) mEventScheduler.getNextEvent(now);
         while (event != null) {
             mFramer.send(event.data, 0, event.count, event.getTimestamp());

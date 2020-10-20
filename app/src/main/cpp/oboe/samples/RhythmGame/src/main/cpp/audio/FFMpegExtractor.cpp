@@ -158,10 +158,10 @@ int64_t FFMpegExtractor::decode(
 
     if (!getStreamInfo(formatContext.get())) return returnValue;
 
-    // Obtain the best audio stream to decode
+    // Obtain the best src.audio stream to decode
     AVStream *stream = getBestAudioStream(formatContext.get());
     if (stream == nullptr || stream->codecpar == nullptr){
-        LOGE("Could not find a suitable audio stream to decode");
+        LOGE("Could not find a suitable src.audio stream to decode");
         return returnValue;
     }
 
@@ -228,9 +228,9 @@ int64_t FFMpegExtractor::decode(
 
     // Prepare to read data
     int bytesWritten = 0;
-    AVPacket avPacket; // Stores compressed audio data
+    AVPacket avPacket; // Stores compressed src.audio data
     av_init_packet(&avPacket);
-    AVFrame *decodedFrame = av_frame_alloc(); // Stores raw audio data
+    AVFrame *decodedFrame = av_frame_alloc(); // Stores raw src.audio data
     int bytesPerSample = av_get_bytes_per_sample((AVSampleFormat)stream->codecpar->format);
 
     LOGD("Bytes per sample %d", bytesPerSample);

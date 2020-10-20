@@ -26,7 +26,7 @@
 using namespace oboe::flowgraph;
 
 /**
- * Bridge between an audio flowgraph and an audio device.
+ * Bridge between an src.audio flowgraph and an src.audio device.
  * Pass in an AudioSink and then pass
  * this object to the AudioStreamBuilder as a callback.
  */
@@ -39,7 +39,7 @@ public:
     }
 
     /**
-     * Called by Oboe when the stream is ready to process audio.
+     * Called by Oboe when the stream is ready to process src.audio.
      */
     oboe::DataCallbackResult onAudioReady(
             oboe::AudioStream *audioStream,

@@ -24,8 +24,8 @@ import android.os.Build;
 import android.util.Log;
 
 /**
- * Simple base class for implementing audio output for examples.
- * This can be sub-classed for experimentation or to redirect audio output.
+ * Simple base class for implementing src.audio output for examples.
+ * This can be sub-classed for experimentation or to redirect src.audio output.
  */
 public class SimpleAudioOutput {
 
@@ -115,7 +115,7 @@ public class SimpleAudioOutput {
     }
 
     /**
-     * Create an audio track then call play().
+     * Create an src.audio track then call play().
      */
     public void start(int framesPerBlock) {
         stop();

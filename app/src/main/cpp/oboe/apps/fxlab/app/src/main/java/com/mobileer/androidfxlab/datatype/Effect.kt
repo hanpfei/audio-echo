@@ -17,7 +17,7 @@
 package com.mobileer.androidfxlab.datatype
 
 /**
- * Class which represents an audio effect
+ * Class which represents an src.audio effect
  */
 data class Effect(val effectDescription: EffectDescription) {
     val name = effectDescription.name

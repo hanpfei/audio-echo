@@ -22,9 +22,9 @@
 extern "C" {
 
 /**
- * Creates the audio engine
+ * Creates the src.audio engine
  *
- * @return a pointer to the audio engine. This should be passed to other methods
+ * @return a pointer to the src.audio engine. This should be passed to other methods
  */
 JNIEXPORT jlong JNICALL
 Java_com_google_oboe_samples_hellooboe_PlaybackEngine_native_1createEngine(

@@ -24,7 +24,7 @@
 namespace oboe {
 
 /**
- * An AudioStream that wraps another AudioStream and provides audio data conversion.
+ * An AudioStream that wraps another AudioStream and provides src.audio data conversion.
  * Operations may include channel conversion, data format conversion and/or sample rate conversion.
  */
 class FilterAudioStream : public AudioStream, AudioStreamCallback {

@@ -24,7 +24,7 @@
    <div id="projectname">Oboe
    &#160;<span id="projectnumber">1.2</span>
    </div>
-   <div id="projectbrief">A library for creating real-time audio apps on Android</div>
+   <div id="projectbrief">A library for creating real-time src.audio apps on Android</div>
   </td>
  </tr>
  </tbody>
@@ -97,7 +97,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classoboe_1_1_audio_stream_callback.html">AudioStreamCallback</a> defines a callback interface for:</p>
-<p>1) moving data to/from an audio stream using <code>onAudioReady</code> 2) being alerted when a stream has an error using <code>onError*</code> methods </p>
+<p>1) moving data to/from an src.audio stream using <code>onAudioReady</code> 2) being alerted when a stream has an error using <code>onError*</code> methods </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af3a7c44f0254abe6e5e5bb566e2317df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af3a7c44f0254abe6e5e5bb566e2317df">&#9670;&nbsp;</a></span>onAudioReady()</h2>
@@ -141,9 +141,9 @@ Public Member Functions</h2></td></tr>
 <p>A buffer is ready for processing.</p>
 <p>For an output stream, this function should render and write numFrames of data in the stream's current data format to the audioData buffer.</p>
 <p>For an input stream, this function should read and process numFrames of data from the audioData buffer.</p>
-<p>The audio data is passed through the buffer. So do NOT call read() or write() on the stream that is making the callback.</p>
+<p>The src.audio data is passed through the buffer. So do NOT call read() or write() on the stream that is making the callback.</p>
 <p>Note that numFrames can vary unless <a class="el" href="classoboe_1_1_audio_stream_builder.html#a3f397821f61eabaeedaf31064c859a54">AudioStreamBuilder::setFramesPerCallback()</a> is called.</p>
-<p>Also note that this callback function should be considered a "real-time" function. It must not do anything that could cause an unbounded delay because that can cause the audio to glitch or pop.</p>
+<p>Also note that this callback function should be considered a "real-time" function. It must not do anything that could cause an unbounded delay because that can cause the src.audio to glitch or pop.</p>
 <p>These are things the function should NOT do: </p><ul>
 <li>
 allocate memory using, for example, malloc() or new </li>

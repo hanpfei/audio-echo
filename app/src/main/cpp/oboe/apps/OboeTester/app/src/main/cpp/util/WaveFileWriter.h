@@ -30,7 +30,7 @@ public:
 };
 
 /**
- * Write audio data to a WAV file.
+ * Write src.audio data to a WAV file.
  *
  * <pre>
  * <code>
@@ -92,7 +92,7 @@ public:
     void close() {
     }
 
-    /** Write single audio data value to the WAV file. */
+    /** Write single src.audio data value to the WAV file. */
     void write(float value);
 
     /**

@@ -22,7 +22,7 @@
 #include <sys/types.h>
 
 /**
- * Store multi-channel audio data in float format.
+ * Store multi-channel src.audio data in float format.
  * The most recent data will be saved.
  * Old data may be overwritten.
  *

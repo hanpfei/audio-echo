@@ -19,11 +19,11 @@ and how to render the effect information in the UI. This means that adding an ef
 native side. The JNI bridge passes information regarding implemented effects descriptions to the UI as well as functions
 called when the user modifies effects in the UI.
 
-The `DuplexEngine` is responsible for managing and syncing the input and output Oboe streams for rendering audio
+The `DuplexEngine` is responsible for managing and syncing the input and output Oboe streams for rendering src.audio
 with as low latency as possible. The `FunctionList` class contains the a vector of effects that correspond to the list of 
-effects (and their parameters) that the user wants to use to process their audio. Effects (and the `FunctionList`) overload
+effects (and their parameters) that the user wants to use to process their src.audio. Effects (and the `FunctionList`) overload
 their function operator to take in two numeric iterator types. E.g `<template iter_type> void operator() 
-(iter_type begin, iter_type end)`, where the `iter_types` correspond to C++ iterators carrying audio data. To erase the type
+(iter_type begin, iter_type end)`, where the `iter_types` correspond to C++ iterators carrying src.audio data. To erase the type
 of different objects, the `FunctionList` holds objects of types `std::function<void(iter_type, iter_type)>` i.e. functions
 which operate on the range between two numeric iterators in place. The `DuplexEngine`simply calls the `FunctionList` on every 
 buffer of samples it receives. 

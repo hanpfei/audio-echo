@@ -27,7 +27,7 @@ const char *getSLErrStr(SLresult code);
 /**
  * Creates an extended PCM format from the supplied format and data representation. This method
  * should only be called on Android devices with API level 21+. API 21 introduced the
- * SLAndroidDataFormat_PCM_EX object which allows audio samples to be represented using
+ * SLAndroidDataFormat_PCM_EX object which allows src.audio samples to be represented using
  * single precision floating-point.
  *
  * @param format

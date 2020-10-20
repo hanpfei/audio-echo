@@ -17,7 +17,7 @@
 #include "PlayRecordingCallback.h"
 
 /**
- * Called when the stream is ready to process audio.
+ * Called when the stream is ready to process src.audio.
  */
 oboe::DataCallbackResult PlayRecordingCallback::onAudioReady(
         oboe::AudioStream *audioStream,

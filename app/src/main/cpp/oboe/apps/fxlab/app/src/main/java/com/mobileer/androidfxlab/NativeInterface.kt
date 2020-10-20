@@ -82,7 +82,7 @@ object NativeInterface {
         enablePassthroughNative(enable)
     }
 
-    // State of audio engine
+    // State of src.audio engine
     external fun createAudioEngine()
 
     external fun destroyAudioEngine()

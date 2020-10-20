@@ -242,7 +242,7 @@ Result AudioStreamAAudio::open() {
         // Warn developer because ErrorInternal is not very informative.
         if (result == Result::ErrorInternal && mDirection == Direction::Input) {
             LOGW("AudioStreamAAudio.open() may have failed due to lack of "
-                 "audio recording permission.");
+                 "src.audio recording permission.");
         }
         goto error2;
     }
@@ -614,7 +614,7 @@ ResultWithValue<double> AudioStreamAAudio::calculateLatencyMillis() {
         return ResultWithValue<double>(Result::ErrorClosed);
     }
 
-    // Get the time that a known audio frame was presented.
+    // Get the time that a known src.audio frame was presented.
     int64_t hardwareFrameIndex;
     int64_t hardwareFrameHardwareTime;
     auto result = getTimestamp(CLOCK_MONOTONIC,

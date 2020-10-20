@@ -28,7 +28,7 @@ namespace oboe {
     using ManagedStream = std::unique_ptr<AudioStream, StreamDeleterFunctor>;
 
 /**
- * Factory class for an audio Stream.
+ * Factory class for an src.audio Stream.
  */
 class AudioStreamBuilder : public AudioStreamBase {
 public:
@@ -122,14 +122,14 @@ public:
     }
 
     /**
-     * Get the audio API which will be requested when opening the stream. No guarantees that this is
+     * Get the src.audio API which will be requested when opening the stream. No guarantees that this is
      * the API which will actually be used. Query the stream itself to find out the API which is
      * being used.
      *
      * If you do not specify the API, then AAudio will be used if isAAudioRecommended()
      * returns true. Otherwise OpenSL ES will be used.
      *
-     * @return the requested audio API
+     * @return the requested src.audio API
      */
     AudioApi getAudioApi() const { return mAudioApi; }
 
@@ -216,7 +216,7 @@ public:
     }
 
     /**
-     * Set the type of audio data that an output stream will carry.
+     * Set the type of src.audio data that an output stream will carry.
      *
      * The system will use this information to optimize the behavior of the stream.
      * This could, for example, affect whether a stream is paused when a notification occurs.
@@ -226,7 +226,7 @@ public:
      *
      * Added in API level 28.
      *
-     * @param contentType the type of audio data, eg. ContentType::Speech
+     * @param contentType the type of src.audio data, eg. ContentType::Speech
      */
     AudioStreamBuilder *setContentType(ContentType contentType) {
         mContentType = contentType;
@@ -283,7 +283,7 @@ public:
     }
 
     /**
-     * Request a stream to a specific audio input/output device given an audio device ID.
+     * Request a stream to a specific src.audio input/output device given an src.audio device ID.
      *
      * In most cases, the primary device will be the appropriate device to use, and the
      * deviceId can be left kUnspecified.

@@ -32,7 +32,7 @@ int32_t NDKExtractor::decode(AAsset *asset, uint8_t *targetData, AudioProperties
     off_t start, length;
     int fd = AAsset_openFileDescriptor(asset, &start, &length);
 
-    // Extract the audio frames
+    // Extract the src.audio frames
     AMediaExtractor *extractor = AMediaExtractor_new();
     media_status_t amresult = AMediaExtractor_setDataSourceFd(extractor, fd,
                                                               static_cast<off64_t>(start),

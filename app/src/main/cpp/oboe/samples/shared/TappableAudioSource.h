@@ -23,7 +23,7 @@
 #include "ITappable.h"
 
 /**
- * This class renders Float audio, but can be tapped to control.
+ * This class renders Float src.audio, but can be tapped to control.
  * It also contains members for sample rate and channel count
  */
 class TappableAudioSource : public IRenderableAudio, public ITappable {

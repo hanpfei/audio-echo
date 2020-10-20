@@ -35,7 +35,7 @@ class AudioFormat {
 };
 
 /**
- * An audio delay effect:
+ * An src.audio delay effect:
  *   - decay is for feedback(echo)weight
  *   - delay time is adjustable
  */

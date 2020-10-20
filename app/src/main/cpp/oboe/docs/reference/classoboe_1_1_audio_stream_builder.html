@@ -24,7 +24,7 @@
    <div id="projectname">Oboe
    &#160;<span id="projectnumber">1.2</span>
    </div>
-   <div id="projectbrief">A library for creating real-time audio apps on Android</div>
+   <div id="projectbrief">A library for creating real-time src.audio apps on Android</div>
   </td>
  </tr>
  </tbody>
@@ -231,7 +231,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mFormatConversionAllo
 <tr class="separator:a2dd35a6f009f36172838260144218f6d inherit pro_attribs_classoboe_1_1_audio_stream_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Factory class for an audio Stream. </p>
+<div class="textblock"><p>Factory class for an src.audio Stream. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac9d41811c297fd28bc61833f640bb8d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac9d41811c297fd28bc61833f640bb8d0">&#9670;&nbsp;</a></span>getAudioApi()</h2>
@@ -255,9 +255,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mFormatConversionAllo
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the audio API which will be requested when opening the stream. No guarantees that this is the API which will actually be used. Query the stream itself to find out the API which is being used.</p>
+<p>Get the src.audio API which will be requested when opening the stream. No guarantees that this is the API which will actually be used. Query the stream itself to find out the API which is being used.</p>
 <p>If you do not specify the API, then AAudio will be used if <a class="el" href="classoboe_1_1_audio_stream_builder.html#a622732bbe5c6577356d749f7dc2108df">isAAudioRecommended()</a> returns true. Otherwise OpenSL ES will be used.</p>
-<dl class="section return"><dt>Returns</dt><dd>the requested audio API </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the requested src.audio API </dd></dl>
 
 </div>
 </div>
@@ -560,13 +560,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mFormatConversionAllo
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the type of audio data that the stream will carry.</p>
+<p>Set the type of src.audio data that the stream will carry.</p>
 <p>The system will use this information to optimize the behavior of the stream. This could, for example, affect whether a stream is paused when a notification occurs.</p>
 <p>The default, if you do not call this function, is ContentType::Music.</p>
 <p>Added in API level 28.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">contentType</td><td>the type of audio data, eg. ContentType::Speech </td></tr>
+    <tr><td class="paramname">contentType</td><td>the type of src.audio data, eg. ContentType::Speech </td></tr>
   </table>
   </dd>
 </dl>
@@ -596,7 +596,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>mFormatConversionAllo
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Request a stream to a specific audio input/output device given an audio device ID.</p>
+<p>Request a stream to a specific src.audio input/output device given an src.audio device ID.</p>
 <p>In most cases, the primary device will be the appropriate device to use, and the deviceId can be left kUnspecified.</p>
 <p>On Android, for example, the ID could be obtained from the Java AudioManager. AudioManager.getDevices() returns an array of AudioDeviceInfo[], which contains a getId() method (as well as other type information), that should be passed to this method.</p>
 <p>Note that when using OpenSL ES, this will be ignored and the created stream will have deviceId kUnspecified.</p>

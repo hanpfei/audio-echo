@@ -111,9 +111,9 @@ Now go to `Build->Refresh Linked C++ Projects` to have Android Studio index the 
 Verify that your project builds correctly. If you have any issues building please [report them here](issues/new).
 
 # Using Oboe
-Once you've added Oboe to your project you can start using Oboe's features. The simplest, and probably most common thing you'll do in Oboe is to create an audio stream.
+Once you've added Oboe to your project you can start using Oboe's features. The simplest, and probably most common thing you'll do in Oboe is to create an src.audio stream.
 
-## Creating an audio stream
+## Creating an src.audio stream
 Include the Oboe header:
 
     #include <oboe/Oboe.h>
@@ -162,7 +162,7 @@ Define an `AudioStreamCallback` class to receive callbacks whenever the stream r
         }
     };
 
-You can find examples of how to play sound using digital synthesis and pre-recorded audio in the [code samples](../samples).
+You can find examples of how to play sound using digital synthesis and pre-recorded src.audio in the [code samples](../samples).
 
 Declare your callback somewhere that it won't get deleted while you are using it.
 
@@ -186,9 +186,9 @@ Check the result to make sure the stream was opened successfully. Oboe has a con
         LOGE("Failed to create stream. Error: %s", oboe::convertToText(result));
     }
 
-Note that this sample code uses the [logging macros from here](https://github.com/googlesamples/android-audio-high-performance/blob/master/debug-utils/logging_macros.h).
+Note that this sample code uses the [logging macros from here](https://github.com/googlesamples/android-src.audio-high-performance/blob/master/debug-utils/logging_macros.h).
 
-## Playing audio
+## Playing src.audio
 Check the properties of the created stream. If you did not specify a channelCount, sampleRate, or format then you need to 
 query the stream to see what you got. The **format** property will dictate the `audioData` type in the `AudioStreamCallback::onAudioReady` callback. If you did specify any of those three properties then you will get what you requested.
 
@@ -206,7 +206,7 @@ To stop receiving callbacks call
     managedStream->requestStop();
 
 ## Closing the stream
-It is important to close your stream when you're not using it to avoid hogging audio resources which other apps could use. This is particularly true when using `SharingMode::Exclusive` because you might prevent other apps from obtaining a low latency audio stream.
+It is important to close your stream when you're not using it to avoid hogging src.audio resources which other apps could use. This is particularly true when using `SharingMode::Exclusive` because you might prevent other apps from obtaining a low latency src.audio stream.
 
 Streams can be explicitly closed:
 
@@ -222,8 +222,8 @@ Streams can also be automatically closed when going out of scope:
 		mStream->requestStart();
 	} // Out of this scope the mStream has been automatically closed 
 	
-It is preferable to let the `ManagedStream` object go out of scope (or be explicitly deleted) when the app is no longer playing audio.
-For apps which only play or record audio when they are in the foreground this is usually done when [`Activity.onPause()`](https://developer.android.com/guide/components/activities/activity-lifecycle#onpause) is called.
+It is preferable to let the `ManagedStream` object go out of scope (or be explicitly deleted) when the app is no longer playing src.audio.
+For apps which only play or record src.audio when they are in the foreground this is usually done when [`Activity.onPause()`](https://developer.android.com/guide/components/activities/activity-lifecycle#onpause) is called.
 
 ## Reconfiguring streams
 In order to change the configuration of the stream, simply call `openManagedStream`
@@ -240,14 +240,14 @@ The `ManagedStream` takes care of its own closure and destruction. If used in an
 automatic allocation context (such as a member of a class), the stream does not
 need to be closed or deleted manually. Make sure that the object which is responsible for
 the `ManagedStream` (its enclosing class) goes out of scope whenever the app is no longer
-playing or recording audio, such as when `Activity.onPause()` is called.
+playing or recording src.audio, such as when `Activity.onPause()` is called.
 
 
 ## Example
 
 The following class is a complete implementation of a `ManagedStream`, which
 renders a sine wave. Creating the class (e.g. through the JNI bridge) creates
-and opens an Oboe stream which renders audio, and its destruction stops and
+and opens an Oboe stream which renders src.audio, and its destruction stops and
 closes the stream.
 ```
 #include <oboe/Oboe.h>
@@ -309,7 +309,7 @@ and started upon user input.
 For more examples on how to use `ManagedStream` look in the [samples](https://github.com/google/oboe/tree/master/samples) folder.
 
 ## Obtaining optimal latency
-One of the goals of the Oboe library is to provide low latency audio streams on the widest range of hardware configurations.
+One of the goals of the Oboe library is to provide low latency src.audio streams on the widest range of hardware configurations.
 When a stream is opened using AAudio, the optimal rate will be chosen unless the app requests a specific rate. The framesPerBurst is also provided by AAudio.
 
 But OpenSL ES cannot determine those values. So applications should query them using Java and then pass them to Oboe. They will be used for OpenSL ES streams on older devices.
@@ -339,7 +339,7 @@ Here's a code sample showing how to set these default values.
 	    oboe::DefaultStreamValues::FramesPerBurst = (int32_t) framesPerBurst;
 	}
 
-Note that the values from Java are for built-in audio devices. Peripheral devices, such as Bluetooth may need larger framesPerBurst.
+Note that the values from Java are for built-in src.audio devices. Peripheral devices, such as Bluetooth may need larger framesPerBurst.
 
 # Further information
 - [Code samples](https://github.com/google/oboe/tree/master/samples)

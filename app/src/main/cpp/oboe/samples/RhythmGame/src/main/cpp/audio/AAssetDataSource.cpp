@@ -47,7 +47,7 @@ AAssetDataSource* AAssetDataSource::newFromCompressedAsset(
     off_t assetSize = AAsset_getLength(asset);
     LOGD("Opened %s, size %ld", filename, assetSize);
 
-    // Allocate memory to store the decompressed audio. We don't know the exact
+    // Allocate memory to store the decompressed src.audio. We don't know the exact
     // size of the decoded data until after decoding so we make an assumption about the
     // maximum compression ratio and the decoded sample format (float for FFmpeg, int16 for NDK).
 #if USE_FFMPEG==true
@@ -64,7 +64,7 @@ AAssetDataSource* AAssetDataSource::newFromCompressedAsset(
     auto numSamples = bytesDecoded / sizeof(int16_t);
 #endif
 
-    // Now we know the exact number of samples we can create a float array to hold the audio data
+    // Now we know the exact number of samples we can create a float array to hold the src.audio data
     auto outputBuffer = std::make_unique<float[]>(numSamples);
 
 #if USE_FFMPEG==1

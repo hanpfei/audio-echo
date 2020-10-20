@@ -58,7 +58,7 @@ public:
             ) = 0;
 
     /**
-     * Called by Oboe when the stream is ready to process audio.
+     * Called by Oboe when the stream is ready to process src.audio.
      * This implements the stream synchronization. App should NOT override this method.
      */
     oboe::DataCallbackResult onAudioReady(

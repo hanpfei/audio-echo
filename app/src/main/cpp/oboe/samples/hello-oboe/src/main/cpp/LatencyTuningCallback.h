@@ -27,9 +27,9 @@
 
 /**
  * This callback object extends the functionality of `DefaultAudioStreamCallback` by automatically
- * tuning the latency of the audio stream. @see onAudioReady for more details on this.
+ * tuning the latency of the src.audio stream. @see onAudioReady for more details on this.
  *
- * It also demonstrates how to use tracing functions for logging inside the audio callback without
+ * It also demonstrates how to use tracing functions for logging inside the src.audio callback without
  * blocking.
  */
 class LatencyTuningCallback: public DefaultAudioStreamCallback {
@@ -44,9 +44,9 @@ public:
     /**
      * Every time the playback stream requires data this method will be called.
      *
-     * @param audioStream the audio stream which is requesting data, this is the mPlayStream object
-     * @param audioData an empty buffer into which we can write our audio data
-     * @param numFrames the number of audio frames which are required
+     * @param audioStream the src.audio stream which is requesting data, this is the mPlayStream object
+     * @param audioData an empty buffer into which we can write our src.audio data
+     * @param numFrames the number of src.audio frames which are required
      * @return Either oboe::DataCallbackResult::Continue if the stream should continue requesting data
      * or oboe::DataCallbackResult::Stop if the stream should stop.
      */

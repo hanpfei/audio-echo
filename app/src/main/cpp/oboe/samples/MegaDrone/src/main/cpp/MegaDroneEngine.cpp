@@ -19,12 +19,12 @@
 #include "MegaDroneEngine.h"
 
 /**
- * Main audio engine for the MegaDrone sample. It is responsible for:
+ * Main src.audio engine for the MegaDrone sample. It is responsible for:
  *
- * - Creating the callback object which will be supplied when constructing the audio stream
+ * - Creating the callback object which will be supplied when constructing the src.audio stream
  * - Setting the CPU core IDs to which the callback thread should bind to
  * - Creating the playback stream, including setting the callback object
- * - Creating `Synth` which will render the audio inside the callback
+ * - Creating `Synth` which will render the src.audio inside the callback
  * - Starting the playback stream
  * - Restarting the playback stream when `restart()` is called by the callback object
  *
@@ -66,7 +66,7 @@ void MegaDroneEngine::createCallback(std::vector<int> cpuIds){
     // when it's disconnected
     mCallback = std::make_unique<DefaultAudioStreamCallback>(*this);
 
-    // Bind the audio callback to specific CPU cores as this can help avoid underruns caused by
+    // Bind the src.audio callback to specific CPU cores as this can help avoid underruns caused by
     // core migrations
     mCallback->setCpuIds(cpuIds);
     mCallback->setThreadAffinityEnabled(true);
@@ -75,7 +75,7 @@ void MegaDroneEngine::createCallback(std::vector<int> cpuIds){
 bool MegaDroneEngine::start(){
     auto result = createPlaybackStream();
     if (result == Result::OK){
-        // Create our synthesizer audio source using the properties of the stream
+        // Create our synthesizer src.audio source using the properties of the stream
         mAudioSource = std::make_shared<Synth>(mStream->getSampleRate(), mStream->getChannelCount());
         mCallback->setSource(std::dynamic_pointer_cast<IRenderableAudio>(mAudioSource));
         mStream->start();

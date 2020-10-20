@@ -1,6 +1,6 @@
 Audio-Echo
 ==========
-The sample demos how to use OpenSL ES to create a player and recorder in Android Fast Audio Path, and connect them to loopback audio. On most android devices, there is a optimized audio path that is tuned up for low latency purpose. The sample creates player/recorder to work in this highly optimized audio path(sometimes called native audio path, [low latency path](http://stackoverflow.com/questions/14842803/low-latency-audio-playback-on-android?rq=1), or fast audio path). The application is validated against the following configurations:
+The sample demos how to use OpenSL ES to create a player and recorder in Android Fast Audio Path, and connect them to loopback src.audio. On most android devices, there is a optimized src.audio path that is tuned up for low latency purpose. The sample creates player/recorder to work in this highly optimized src.audio path(sometimes called native src.audio path, [low latency path](http://stackoverflow.com/questions/14842803/low-latency-src.audio-playback-on-android?rq=1), or fast src.audio path). The application is validated against the following configurations:
   *   Android L    AndroidOne
   *   Android M    Nexus 5, Nexus 9
 
@@ -24,7 +24,7 @@ Getting Started
 
 Usage
 -----
-App will capture audio from android devices and playback on the same device; the playback on speaker will be captured immediately and played back...! So to verify it, it is recommended to "mute" the playback audio with a earspeaker/earphone/earbug so it does not get looped back.  Some device like Nexus 9, once you plug in an external headphone/headspeaker, it stops to use onboard microphone AND speaker anymore -- in this case, you need turn on the microphone coming with your headphone. Another point, when switching between external headphone and internal one, the volume is sometimes very low/muted; recommend to increase the playback volume with volume buttons on the phone/pad after plugging external headphone.
+App will capture src.audio from android devices and playback on the same device; the playback on speaker will be captured immediately and played back...! So to verify it, it is recommended to "mute" the playback src.audio with a earspeaker/earphone/earbug so it does not get looped back.  Some device like Nexus 9, once you plug in an external headphone/headspeaker, it stops to use onboard microphone AND speaker anymore -- in this case, you need turn on the microphone coming with your headphone. Another point, when switching between external headphone and internal one, the volume is sometimes very low/muted; recommend to increase the playback volume with volume buttons on the phone/pad after plugging external headphone.
 
 Low Latency Verification
 ------------------------
@@ -39,27 +39,27 @@ Low Latency Verification
 
   * find the sample app pid  
   * check with result on step 1.  
-   if there is one "F" in the front of your echo pid, **player** is on fast audio path  
-   For fast audio capture [it is totally different story], if you do **NOT** see  
+   if there is one "F" in the front of your echo pid, **player** is on fast src.audio path
+   For fast src.audio capture [it is totally different story], if you do **NOT** see
    com.example.nativeaudio W/AudioRecord﹕ AUDIO_INPUT_FLAG_FAST denied by client  
-in your logcat output when you are creating audio recorder, you could "assume" you are on the fast path.  
+in your logcat output when you are creating src.audio recorder, you could "assume" you are on the fast path.
 If your system image was built with muted ALOGW, you will not be able to see the above warning message.
 
 Tune-ups
 --------
 A couple of knobs in the code for lower latency purpose:
-  * audio buffer size
-  * number of audio buffers cached before kicking start player
-The lower you go with them, the lower latency you get and also the lower budget for audio processing. All audio processing has to be completed in the time period they are captured / played back, plus extra time needed for:
-  * audio driver
-  * audio flinger framework,
+  * src.audio buffer size
+  * number of src.audio buffers cached before kicking start player
+The lower you go with them, the lower latency you get and also the lower budget for src.audio processing. All src.audio processing has to be completed in the time period they are captured / played back, plus extra time needed for:
+  * src.audio driver
+  * src.audio flinger framework,
   * bufferqueue callbacks etc
-Besides those, the irregularity of the buffer queue player/capture callback time is another factor. The callback from openSL may not as regular as you assumed, the more irregularity it is, the more likely have choopy audio. To fight that, more buffering is needed, which defeats the low-latency purpose! The low latency path is highly tuned up so you have better chance to get more regular callbacks. You may experiment with your platform to find the best parameters for lower latency and continuously playback audio experience.
+Besides those, the irregularity of the buffer queue player/capture callback time is another factor. The callback from openSL may not as regular as you assumed, the more irregularity it is, the more likely have choopy src.audio. To fight that, more buffering is needed, which defeats the low-latency purpose! The low latency path is highly tuned up so you have better chance to get more regular callbacks. You may experiment with your platform to find the best parameters for lower latency and continuously playback src.audio experience.
 The app capture and playback on the same device [most of times the same chip], capture and playback clocks are assumed synchronized naturally [so we are not dealing with it]
 
 Credits
 -------
-  * The sample is greatly inspired by native-audio sample
+  * The sample is greatly inspired by native-src.audio sample
   * Don Turner @ Google for the helping of low latency path
   * Ian Ni-Lewis @ Google for producer/consumer queue and many others
 

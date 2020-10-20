@@ -75,7 +75,7 @@ void SimpleMultiPlayer::onErrorBeforeClose(AudioStream *, Result error) {
 bool SimpleMultiPlayer::openStream() {
     __android_log_print(ANDROID_LOG_INFO, TAG, "openStream()");
 
-    // Create an audio stream
+    // Create an src.audio stream
     AudioStreamBuilder builder;
     builder.setChannelCount(mChannelCount);
     // we will resample source data to device rate, so take default sample rate

@@ -197,11 +197,11 @@ void LiveEffectEngine::warnIfNotLowLatency(std::shared_ptr<oboe::AudioStream> &s
 }
 
 /**
- * Handles playback stream's audio request. In this sample, we simply block-read
+ * Handles playback stream's src.audio request. In this sample, we simply block-read
  * from the record stream for the required samples.
  *
  * @param oboeStream: the playback stream that requesting additional samples
- * @param audioData:  the buffer to load audio samples for playback stream
+ * @param audioData:  the buffer to load src.audio samples for playback stream
  * @param numFrames:  number of frames to load to audioData buffer
  * @return: DataCallbackResult::Continue.
  */

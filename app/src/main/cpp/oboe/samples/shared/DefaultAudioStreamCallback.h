@@ -76,7 +76,7 @@ public:
     }
 
     /**
-     * Set the CPU IDs to bind the audio callback thread to
+     * Set the CPU IDs to bind the src.audio callback thread to
      *
      * @param mCpuIds - the CPU IDs to bind to
      */
@@ -85,11 +85,11 @@ public:
     }
 
     /**
-     * Enable or disable binding the audio callback thread to specific CPU cores. The CPU core IDs
+     * Enable or disable binding the src.audio callback thread to specific CPU cores. The CPU core IDs
      * can be specified using @see setCpuIds. If no CPU IDs are specified the initial core which the
-     * audio thread is called on will be used.
+     * src.audio thread is called on will be used.
      *
-     * @param isEnabled - whether the audio callback thread should be bound to specific CPU core(s)
+     * @param isEnabled - whether the src.audio callback thread should be bound to specific CPU core(s)
      */
     void setThreadAffinityEnabled(bool isEnabled){
         mIsThreadAffinityEnabled = isEnabled;
@@ -99,13 +99,13 @@ public:
 private:
     std::shared_ptr<IRenderableAudio> mRenderable;
     IRestartable &mParent;
-    std::vector<int> mCpuIds; // IDs of CPU cores which the audio callback should be bound to
+    std::vector<int> mCpuIds; // IDs of CPU cores which the src.audio callback should be bound to
     std::atomic<bool> mIsThreadAffinityEnabled { false };
     std::atomic<bool> mIsThreadAffinitySet { false };
 
     /**
      * Set the thread affinity for the current thread to mCpuIds. This can be useful to call on the
-     * audio thread to avoid underruns caused by CPU core migrations to slower CPU cores.
+     * src.audio thread to avoid underruns caused by CPU core migrations to slower CPU cores.
      */
     void setThreadAffinity() {
 

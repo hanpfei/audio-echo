@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * POJO which represents basic information for an audio device.
+ * POJO which represents basic information for an src.audio device.
  *
  * Example: id: 8, deviceName: "built-in speaker"
  */
@@ -71,7 +71,7 @@ public class AudioDeviceListEntry {
      * Create a list of AudioDeviceListEntry objects from a list of AudioDeviceInfo objects.
      *
      * @param devices A list of {@Link AudioDeviceInfo} objects
-     * @param directionType Only audio devices with this direction will be included in the list.
+     * @param directionType Only src.audio devices with this direction will be included in the list.
      *                      Valid values are GET_DEVICES_ALL, GET_DEVICES_OUTPUTS and
      *                      GET_DEVICES_INPUTS.
      * @return A list of AudioDeviceListEntry objects

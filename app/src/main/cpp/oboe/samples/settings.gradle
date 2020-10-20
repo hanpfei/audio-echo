@@ -15,7 +15,7 @@
  *
  */
 
-include ':audio-device'
+include ':src.audio-device'
 include ':hello-oboe'
 include ':RhythmGame'
 include ':MegaDrone'

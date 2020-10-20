@@ -11,17 +11,17 @@ This sample demonstrates how to obtain the lowest latency and optimal computatio
 3) Setting sharing mode to Exclusive
 4) Setting the buffer size to 2 bursts
 5) Using the `-Ofast` compiler optimization flag, even when building the `Debug` variant
-6) Using [`getExclusiveCores`](https://developer.android.com/reference/android/os/Process#getExclusiveCores()) (API 24+) and thread affinity to bind the audio thread to the best available CPU core(s)
+6) Using [`getExclusiveCores`](https://developer.android.com/reference/android/os/Process#getExclusiveCores()) (API 24+) and thread affinity to bind the src.audio thread to the best available CPU core(s)
 7) Using a `StabilizedCallback` which aims to spend a fixed percentage of the callback time to avoid CPU frequency scaling ([video explanation](https://www.youtube.com/watch?v=C0BPXZIvG-Q&feature=youtu.be&t=1158))
 
 
 This code was presented at [AES Milan](http://www.aes.org/events/144/) and [Droidcon Berlin](https://www.de.droidcon.com/) as part of a talk on Oboe.
 
-The [following article explaining how to debug CPU performance problems](https://medium.com/@donturner/debugging-audio-glitches-on-android-ed10782f9c64) may also be useful when looking at this code.
+The [following article explaining how to debug CPU performance problems](https://medium.com/@donturner/debugging-src.audio-glitches-on-android-ed10782f9c64) may also be useful when looking at this code.
 
 Implementation details
 ---
-The stream properties are left to Oboe as such the app must output audio data in a format which matches that of the stream. 
+The stream properties are left to Oboe as such the app must output src.audio data in a format which matches that of the stream.
 
 Four different formats are supported: 
 

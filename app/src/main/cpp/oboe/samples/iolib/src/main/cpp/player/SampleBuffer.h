@@ -22,7 +22,7 @@
 namespace iolib {
 
 /*
- * Defines the relevant properties of the audio data being sourced.
+ * Defines the relevant properties of the src.audio data being sourced.
  */
 struct AudioProperties {
     int32_t channelCount;

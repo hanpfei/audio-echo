@@ -167,7 +167,7 @@ const char *convertToText<AudioApi>(AudioApi audioApi) {
         case AudioApi::Unspecified: return "Unspecified";
         case AudioApi::OpenSLES:    return "OpenSLES";
         case AudioApi::AAudio:      return "AAudio";
-        default:                    return "Unrecognized audio API";
+        default:                    return "Unrecognized src.audio API";
     }
 }
 

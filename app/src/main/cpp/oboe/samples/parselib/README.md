@@ -1,9 +1,9 @@
 **parselib**
 ==========
-Classes for parsing and loading audio data.
+Classes for parsing and loading src.audio data.
 
 ## Abstract
-(Oboe) **parselib** contains facilities for reading and loading audio data from streams. Streams can be wrapped around either files or memory blocks.
+(Oboe) **parselib** contains facilities for reading and loading src.audio data from streams. Streams can be wrapped around either files or memory blocks.
 
 **parselib** is written in C++ and is intended to be called from Android native code. It is implemented as a static library.
 
@@ -12,10 +12,10 @@ Classes for parsing and loading audio data.
 
 ## **parselib** project structure
 * stream
-Contains classes related to reading audio data from a stream abstraction
+Contains classes related to reading src.audio data from a stream abstraction
 
 * wav
-Contains classes to read/load audio data in WAV format
+Contains classes to read/load src.audio data in WAV format
 
 ## **stream** Classes
 ### InputStream
@@ -28,11 +28,11 @@ A concrete implementation of `InputStream` that reads data from a file.
 A concrete implementation of `InputStream` that reads data from a memory block.
 
 ## **wav** Classes
-Contains classes to read/load audio data in WAV format. WAV format files are "Microsoft Resource Interchange File Format" (RIFF) files. WAV files contain a variety of RIFF "chunks", but only a few are required (see 'Chunk' classes below)
+Contains classes to read/load src.audio data in WAV format. WAV format files are "Microsoft Resource Interchange File Format" (RIFF) files. WAV files contain a variety of RIFF "chunks", but only a few are required (see 'Chunk' classes below)
 
 ### Utility
 #### AudioEncoding
-Defines constants for various audio encodings
+Defines constants for various src.audio encodings
 
 ### WavTypes
 Support for **RIFF** file types and managing FOURCC data.

@@ -17,8 +17,8 @@
 #define SAMPLES_IRESTARTABLE_H
 
 /**
- * Represents an object which can be restarted. For example an audio engine which has one or more
- * streams which can be restarted following a change in audio device configuration. For example,
+ * Represents an object which can be restarted. For example an src.audio engine which has one or more
+ * streams which can be restarted following a change in src.audio device configuration. For example,
  * headphones being connected.
  */
 class IRestartable {

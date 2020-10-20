@@ -42,14 +42,14 @@ class LatencyTuner {
 public:
 
     /**
-     * Construct a new LatencyTuner object which will act on the given audio stream
+     * Construct a new LatencyTuner object which will act on the given src.audio stream
      *
      * @param stream the stream who's latency will be tuned
      */
     explicit LatencyTuner(AudioStream &stream);
 
     /**
-     * Construct a new LatencyTuner object which will act on the given audio stream.
+     * Construct a new LatencyTuner object which will act on the given src.audio stream.
      *
      * @param stream the stream who's latency will be tuned
      * @param the maximum buffer size which the tune() operation will set the buffer size to
@@ -77,7 +77,7 @@ public:
     void requestReset();
 
     /**
-     * @return true if the audio stream's buffer size is at the maximum value. If no maximum value
+     * @return true if the src.audio stream's buffer size is at the maximum value. If no maximum value
      * was specified when constructing the LatencyTuner then the value of
      * stream->getBufferCapacityInFrames is used
      */

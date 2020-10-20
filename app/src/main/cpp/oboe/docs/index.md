@@ -2,4 +2,4 @@
 layout: default
 title: Home
 ---
-Oboe is an audio library for Android.
+Oboe is an src.audio library for Android.

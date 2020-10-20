@@ -28,7 +28,7 @@ StabilizedCallback::StabilizedCallback(AudioStreamCallback *callback) : mCallbac
 }
 
 /**
- * An audio callback which attempts to do work for a fixed amount of time.
+ * An src.audio callback which attempts to do work for a fixed amount of time.
  *
  * @param oboeStream
  * @param audioData

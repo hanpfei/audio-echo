@@ -25,13 +25,13 @@
 
 
 /**
- * Main audio engine for the HelloOboe sample. It is responsible for:
+ * Main src.audio engine for the HelloOboe sample. It is responsible for:
  *
- * - Creating a callback object which is supplied when constructing the audio stream, and will be
+ * - Creating a callback object which is supplied when constructing the src.audio stream, and will be
  * called when the stream starts
  * - Restarting the stream when user-controllable properties (Audio API, channel count etc) are
  * changed, and when the stream is disconnected (e.g. when headphones are attached)
- * - Calculating the audio latency of the stream
+ * - Calculating the src.audio latency of the stream
  *
  */
 HelloOboeEngine::HelloOboeEngine()
@@ -45,13 +45,13 @@ double HelloOboeEngine::getCurrentOutputLatencyMillis() {
     std::lock_guard<std::mutex> lock(mLock);
     if (!mStream) return -1.0;
 
-    // Get the time that a known audio frame was presented for playing
+    // Get the time that a known src.audio frame was presented for playing
     auto result = mStream->getTimestamp(CLOCK_MONOTONIC);
     double outputLatencyMillis = -1;
     const int64_t kNanosPerMillisecond = 1000000;
     if (result == oboe::Result::OK) {
         oboe::FrameTimestamp playedFrame = result.value();
-        // Get the write index for the next audio frame
+        // Get the write index for the next src.audio frame
         int64_t writeIndex = mStream->getFramesWritten();
         // Calculate the number of frames between our known frame and the write index
         int64_t frameIndexDelta = writeIndex - playedFrame.position;

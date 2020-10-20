@@ -6,7 +6,7 @@
     <!-- versionCode and versionName also have to be updated in build.gradle -->
 
     <uses-feature android:name="android.hardware.microphone" android:required="true" />
-    <uses-feature android:name="android.hardware.audio.output" android:required="true" />
+    <uses-feature android:name="android.hardware.src.audio.output" android:required="true" />
     <uses-feature android:name="android.software.midi" android:required="true" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />

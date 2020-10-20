@@ -173,7 +173,7 @@ int ActivityContext::open(jint nativeApi,
         return (jint) oboe::Result::ErrorOutOfRange;
     }
 
-    // Create an audio stream.
+    // Create an src.audio stream.
     oboe::AudioStreamBuilder builder;
     builder.setChannelCount(channelCount)
             ->setDirection(isInput ? oboe::Direction::Input : oboe::Direction::Output)

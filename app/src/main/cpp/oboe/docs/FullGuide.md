@@ -1,38 +1,38 @@
 # Full Guide To Oboe
-Oboe is a C++ library which makes it easy to build high-performance audio apps on Android. Apps communicate with Oboe by reading and writing data to streams.
+Oboe is a C++ library which makes it easy to build high-performance src.audio apps on Android. Apps communicate with Oboe by reading and writing data to streams.
 
 ## Audio streams
 
-Oboe moves audio data between your app and the audio inputs and outputs on your Android device. Your app passes data in and out using a callback function or by reading from and writing to *audio streams*, represented by the class `AudioStream`. The read/write calls can be blocking or non-blocking.
+Oboe moves src.audio data between your app and the src.audio inputs and outputs on your Android device. Your app passes data in and out using a callback function or by reading from and writing to *src.audio streams*, represented by the class `AudioStream`. The read/write calls can be blocking or non-blocking.
 
 A stream is defined by the following:
 
-*   The *audio* *device* that is the source or sink for the data in the stream.
-*   The *sharing mode* that determines whether a stream has exclusive access to an audio device that might otherwise be shared among multiple streams.
-*   The *format* of the audio data in the stream.
+*   The *src.audio* *device* that is the source or sink for the data in the stream.
+*   The *sharing mode* that determines whether a stream has exclusive access to an src.audio device that might otherwise be shared among multiple streams.
+*   The *format* of the src.audio data in the stream.
 
 ### Audio device
 
-Each stream is attached to a single audio device.
+Each stream is attached to a single src.audio device.
 
-An audio device is a hardware interface or virtual endpoint that acts as a source or sink for a continuous stream of digital audio data. Don't confuse an *audio device*
+An src.audio device is a hardware interface or virtual endpoint that acts as a source or sink for a continuous stream of digital src.audio data. Don't confuse an *src.audio device*
 (a built-in mic or bluetooth headset) with the *Android device* (the phone or watch) that is running your app.
 
-On API 23 and above you can use the `AudioManager` method [getDevices()](https://developer.android.com/reference/android/media/AudioManager.html#getDevices(int)) to discover the audio devices that are available on your Android device. The method returns information about the [type](https://developer.android.com/reference/android/media/AudioDeviceInfo.html) of each device.
+On API 23 and above you can use the `AudioManager` method [getDevices()](https://developer.android.com/reference/android/media/AudioManager.html#getDevices(int)) to discover the src.audio devices that are available on your Android device. The method returns information about the [type](https://developer.android.com/reference/android/media/AudioDeviceInfo.html) of each device.
 
-Each audio device has a unique ID on the Android device. You can  use the ID to bind an audio stream to a specific audio device.  However, in most cases you can let Oboe choose the default primary device rather than specifying one yourself.
+Each src.audio device has a unique ID on the Android device. You can  use the ID to bind an src.audio stream to a specific src.audio device.  However, in most cases you can let Oboe choose the default primary device rather than specifying one yourself.
 
-The audio device attached to a stream determines whether the stream is for input or output. A stream can only move data in one direction. When you define a stream you also set its direction. When you open a stream Android checks to ensure that the audio device and stream direction agree.
+The src.audio device attached to a stream determines whether the stream is for input or output. A stream can only move data in one direction. When you define a stream you also set its direction. When you open a stream Android checks to ensure that the src.audio device and stream direction agree.
 
 ### Sharing mode
 
 A stream has a sharing mode:
 
-*   `SharingMode::Exclusive` (available on API 26+) means the stream has exclusive access to an endpoint on its audio device; the endpoint cannot be used by any other audio stream. If the exclusive endpoint is already in use, it might not be possible for the stream to obtain access to it. Exclusive streams provide the lowest possible latency by bypassing the mixer stage, but they are also more likely to get disconnected. You should close exclusive streams as soon as you no longer need them, so that other apps can access that endpoint. Not all audio devices provide exclusive endpoints. System sounds and sounds from other apps can still be heard when an exclusive stream is in use as they use a different endpoint.
+*   `SharingMode::Exclusive` (available on API 26+) means the stream has exclusive access to an endpoint on its src.audio device; the endpoint cannot be used by any other src.audio stream. If the exclusive endpoint is already in use, it might not be possible for the stream to obtain access to it. Exclusive streams provide the lowest possible latency by bypassing the mixer stage, but they are also more likely to get disconnected. You should close exclusive streams as soon as you no longer need them, so that other apps can access that endpoint. Not all src.audio devices provide exclusive endpoints. System sounds and sounds from other apps can still be heard when an exclusive stream is in use as they use a different endpoint.
 
 ![Oboe exclusive sharing mode diagram](images/oboe-sharing-mode-exclusive.jpg)
 
-*   `SharingMode::Shared` allows Oboe streams to share an endpoint. The operating system will mix all the shared streams assigned to the same endpoint on the audio device.
+*   `SharingMode::Shared` allows Oboe streams to share an endpoint. The operating system will mix all the shared streams assigned to the same endpoint on the src.audio device.
 
 ![Oboe exclusive sharing mode diagram](images/oboe-sharing-mode-shared.jpg)
 
@@ -41,7 +41,7 @@ You can explicitly request the sharing mode when you create a stream, although y
 
 ### Audio format
 
-The data passed through a stream has the usual digital audio attributes, which you must specify when you define a stream. These are as follows:
+The data passed through a stream has the usual digital src.audio attributes, which you must specify when you define a stream. These are as follows:
 
 *   Sample format
 *   Samples per frame
@@ -51,10 +51,10 @@ Oboe permits these sample formats:
 
 | AudioFormat | C data type | Notes |
 | :------------ | :---------- | :---- |
-| I16 | int16_t | common 16-bit samples, [Q0.15 format](https://source.android.com/devices/audio/data_formats#androidFormats) |
+| I16 | int16_t | common 16-bit samples, [Q0.15 format](https://source.android.com/devices/src.audio/data_formats#androidFormats) |
 | Float | float | -1.0 to +1.0 |
 
-Oboe might perform sample conversion on its own. For example, if an app is writing AudioFormat::Float data but the HAL uses AudioFormat::I16, Oboe might convert the samples automatically. Conversion can happen in either direction. If your app processes audio input, it is wise to verify the input format and be prepared to convert data if necessary, as in this example:
+Oboe might perform sample conversion on its own. For example, if an app is writing AudioFormat::Float data but the HAL uses AudioFormat::I16, Oboe might convert the samples automatically. Conversion can happen in either direction. If your app processes src.audio input, it is wise to verify the input format and be prepared to convert data if necessary, as in this example:
 
     AudioFormat dataFormat = stream->getDataFormat();
     //... later
@@ -62,11 +62,11 @@ Oboe might perform sample conversion on its own. For example, if an app is writi
          convertFloatToPcm16(...)
     }
 
-## Creating an audio stream
+## Creating an src.audio stream
 
 The Oboe library follows a [builder design pattern](https://en.wikipedia.org/wiki/Builder_pattern) and provides the class `AudioStreamBuilder`.
 
-### Set the audio stream configuration using an AudioStreamBuilder.
+### Set the src.audio stream configuration using an AudioStreamBuilder.
 
 Use the builder functions that correspond to the stream parameters. These optional set functions are available:
 
@@ -88,7 +88,7 @@ For all parameters, you can explicitly set a value, or let the system
 assign the optimal value by not specifying the parameter at all or setting
 it to `kUnspecified`.
 
-To be safe, check the state of the audio stream after you create it, as explained in step 3, below.
+To be safe, check the state of the src.audio stream after you create it, as explained in step 3, below.
 
 ### Open the Stream
 
@@ -152,7 +152,7 @@ It may also be limited further to reduce glitching on particular devices.
 This features is not supported when using OpenSL ES callbacks.
 
 Many of the stream's properties may vary (whether or not you set
-them) depending on the capabilities of the audio device and the Android device on 
+them) depending on the capabilities of the src.audio device and the Android device on
 which it's running. If you need to know these values then you must query them using 
 the accessor after the stream has been opened. Additionally,
 the underlying parameters a stream is granted are useful to know if
@@ -184,7 +184,7 @@ specify additional information about the AudioStream to the device. Currently,
 they have little effect on the stream, but setting them helps applications 
 interact better with other services.
 
-For more information see: [Usage/ContentTypes](https://source.android.com/devices/audio/attributes).
+For more information see: [Usage/ContentTypes](https://source.android.com/devices/src.audio/attributes).
 The InputPreset may be used by the device to process the input stream (such as gain control). By default 
 it is set to VoiceRecognition, which is optimized for low latency.
 
@@ -192,12 +192,12 @@ it is set to VoiceRecognition, which is optimized for low latency.
 * `setContentType(oboe::ContentType contentType)` - The type of content carried
   by the stream.
 * `setInputPreset(oboe::InputPreset inputPreset)` - The recording configuration
-  for an audio input.
+  for an src.audio input.
 * `setSessionId(SessionId sessionId)` - Allocate SessionID to connect to the
   Java AudioEffects API.
 
 
-## Using an audio stream
+## Using an src.audio stream
 
 ### State transitions
 
@@ -272,14 +272,14 @@ using the corresponding transient state as the inputState. Do not call
 will be deleted as soon as it closes. And do not call `close()`
 while `waitForStateChange()` is running in another thread.
 
-### Reading and writing to an audio stream
+### Reading and writing to an src.audio stream
 
 There are two ways to move data in or out of a stream.
 1) Read from or write directly to the stream.
 2) Specify a callback object that will get called when the stream is ready.
 
 The callback technique offers the lowest latency performance because the callback code can run in a high priority thread.
-Also, attempting to open a low latency output stream without an audio callback (with the intent to use writes)
+Also, attempting to open a low latency output stream without an src.audio callback (with the intent to use writes)
 may result in a non low latency stream.
 
 The read/write technique may be easier when you do not need low latency. Or, when doing both input and output, it is common to use a callback for output and then just do a non-blocking read from the input stream. Then you have both the input and output data available in one high priority thread.
@@ -293,7 +293,7 @@ For a blocking read or write that transfers the specified number of frames, set 
 
 When you read input, you should verify the correct number of
 frames was read. If not, the buffer might contain unknown data that could cause an
-audio glitch. You can pad the buffer with zeros to create a
+src.audio glitch. You can pad the buffer with zeros to create a
 silent dropout:
 
     Result result = stream.read(audioData, numFrames, timeout);
@@ -310,7 +310,7 @@ You can prime the stream's buffer before starting the stream by writing data or 
 
 The data in the buffer must match the data format returned by `stream.getDataFormat()`.
 
-### Closing an audio stream
+### Closing an src.audio stream
 
 When you are finished using a stream, close it:
 
@@ -318,17 +318,17 @@ When you are finished using a stream, close it:
 
 Do not close a stream while it is being written to or read from another thread as this will cause your app to crash. After you close a stream you should not call any of its methods except for quering it properties.
 
-### Disconnected audio stream
+### Disconnected src.audio stream
 
-An audio stream can become disconnected at any time if one of these events happens:
+An src.audio stream can become disconnected at any time if one of these events happens:
 
-*   The associated audio device is no longer connected (for example when headphones are unplugged).
+*   The associated src.audio device is no longer connected (for example when headphones are unplugged).
 *   An error occurs internally.
-*   An audio device is no longer the primary audio device.
+*   An src.audio device is no longer the primary src.audio device.
 
 When a stream is disconnected, it has the state "Disconnected" and calls to `write()` or other functions will return `Result::ErrorDisconnected`.  When a stream is disconnected, all you can do is close it.
 
-If you need to be informed when an audio device is disconnected, write a class
+If you need to be informed when an src.audio device is disconnected, write a class
 which extends `AudioStreamCallback` and then register your class using `builder.setCallback(yourCallbackClass)`.
 If you register a callback, then it will automatically close the stream in a separate thread if the stream is disconnected.
 Note that registering this callback will enable callbacks for both data and errors. So `onAudioReady()` will be called. See the "high priority callback" section below.
@@ -344,18 +344,18 @@ During this callback, stream properties (those requested by the builder) can be 
 The stream can be deleted at the end of this method (as long as it not referenced in other threads).
 Methods that reference the underlying stream should not be called (e.g. `getTimestamp()`, `getXRunCount()`, `read()`, `write()`, etc.).
 Opening a seperate stream is also a valid use of this callback, especially if the error received is `Error::Disconnected`. 
-However, it is important to note that the new audio device may have vastly different properties than the stream that was disconnected.
+However, it is important to note that the new src.audio device may have vastly different properties than the stream that was disconnected.
 
 
 ## Optimizing performance
 
-You can optimize the performance of an audio application by using special high-priority threads.
+You can optimize the performance of an src.audio application by using special high-priority threads.
 
 ### Using a high priority callback
 
-If your app reads or writes audio data from an ordinary thread, it may be preempted or experience timing jitter. This can cause audio glitches.
-Using larger buffers might guard against such glitches, but a large buffer also introduces longer audio latency.
-For applications that require low latency, an audio stream can use an asynchronous callback function to transfer data to and from your app.
+If your app reads or writes src.audio data from an ordinary thread, it may be preempted or experience timing jitter. This can cause src.audio glitches.
+Using larger buffers might guard against such glitches, but a large buffer also introduces longer src.audio latency.
+For applications that require low latency, an src.audio stream can use an asynchronous callback function to transfer data to and from your app.
 The callback runs in a high-priority thread that has better performance.
 
 Your code can access the callback mechanism by implementing the virtual class
@@ -464,7 +464,7 @@ If low latency is more important than power savings in your application, use `Pe
 This is useful for apps that are very interactive, such as games or keyboard synthesizers.
 
 If saving power is more important than low latency in your application, use `PerformanceMode::PowerSaving`.
-This is typical for apps that play back previously generated music, such as streaming audio or MIDI file players.
+This is typical for apps that play back previously generated music, such as streaming src.audio or MIDI file players.
 
 In the current version of Oboe, in order to achieve the lowest possible latency you must use the `PerformanceMode::LowLatency` performance mode along with a high-priority callback. Follow this example:
 

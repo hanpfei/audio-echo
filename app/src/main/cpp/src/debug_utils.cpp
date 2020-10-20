@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 #include <cstdio>
+#include <inttypes.h>
 #include <sys/stat.h>
 
 #include "debug_utils.h"
-#include "android_debug.h"
-#include <inttypes.h>
 
-static const char* FILE_PREFIX = "/sdcard/data/audio";
+#include "android_debug.h"
+
+static const char* FILE_PREFIX = "/sdcard/data/src.audio";
 
 volatile uint32_t AndroidLog::fileIdx_ = 0;
 AndroidLog::AndroidLog() : fp_(NULL), prevTick_(static_cast<uint64_t>(0)) {

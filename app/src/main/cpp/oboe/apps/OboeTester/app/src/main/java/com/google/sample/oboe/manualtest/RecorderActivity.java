@@ -23,7 +23,7 @@ import android.widget.Button;
 import java.io.IOException;
 
 /**
- * Activity to record and play back audio.
+ * Activity to record and play back src.audio.
  */
 public class RecorderActivity extends TestInputActivity {
 

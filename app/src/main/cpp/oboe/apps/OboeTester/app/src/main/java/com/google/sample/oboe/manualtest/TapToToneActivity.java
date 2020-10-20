@@ -320,7 +320,7 @@ public class TapToToneActivity extends TestOutputActivityBase {
         // If the user previously denied this permission then show a message explaining why
         // this permission is needed
         if (shouldShowRequestPermissionRationale(requiredPermission)) {
-            showErrorToast("This app needs to record audio through the microphone....");
+            showErrorToast("This app needs to record src.audio through the microphone....");
         }
 
         // request the permission.

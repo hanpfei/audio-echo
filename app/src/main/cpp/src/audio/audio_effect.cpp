@@ -72,7 +72,7 @@ bool AudioDelay::setDelayTime(size_t delayTimeInMS) {
 /**
  * Internal helper function to allocate buffer for the delay
  *  - calculate the buffer size for the delay time
- *  - allocate and zero out buffer (0 means silent audio)
+ *  - allocate and zero out buffer (0 means silent src.audio)
  *  - configure bufSize_ to be size of audioFrames
  */
 void AudioDelay::allocateBuffer(void) {
@@ -120,12 +120,12 @@ void AudioDelay::setDecayWeight(float weight) {
 float AudioDelay::getDecayWeight(void) const { return decayWeight_; }
 
 /**
- * process() filter live audio with "echo" effect:
+ * process() filter live src.audio with "echo" effect:
  *   delay time is run-time adjustable
  *   decay time could also be adjustable, but not used
  *   in this sample, hardcoded to .5
  *
- * @param liveAudio is recorded audio stream
+ * @param liveAudio is recorded src.audio stream
  * @param channelCount for liveAudio, must be 2 for stereo
  * @param numFrames is length of liveAudio in Frames ( not in byte )
  */

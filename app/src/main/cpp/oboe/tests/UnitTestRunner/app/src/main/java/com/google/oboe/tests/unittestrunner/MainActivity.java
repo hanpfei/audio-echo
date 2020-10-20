@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         if (grantResults.length != 1 ||
                 grantResults[0] != PackageManager.PERMISSION_GRANTED) {
 
-            // User denied the permission, without this we cannot record audio
+            // User denied the permission, without this we cannot record src.audio
             // Show a toast and update the status accordingly
             outputText.setText(R.string.status_record_audio_denied);
             Toast.makeText(getApplicationContext(),

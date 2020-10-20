@@ -35,12 +35,12 @@ std::vector<int> convertJavaArrayToVector(JNIEnv *env, jintArray intArray) {
 
 extern "C" {
 /**
- * Start the audio engine
+ * Start the src.audio engine
  *
  * @param env
  * @param instance
- * @param jCpuIds - CPU core IDs which the audio process should affine to
- * @return a pointer to the audio engine. This should be passed to other methods
+ * @param jCpuIds - CPU core IDs which the src.audio process should affine to
+ * @return a pointer to the src.audio engine. This should be passed to other methods
  */
 JNIEXPORT jlong JNICALL
 Java_com_google_oboe_samples_megadrone_MainActivity_startEngine(JNIEnv *env, jobject /*unused*/,

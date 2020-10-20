@@ -218,7 +218,7 @@ TEST_F(StreamClosedReturnValues, GetFramesWrittenReturnsLastKnownValue){
     int16_t buffer[4] = { 1, 2, 3, 4 };
     Result r = mStream->write(&buffer, 4, 0);
     if (r != Result::OK){
-        FAIL() << "Could not write to audio stream";
+        FAIL() << "Could not write to src.audio stream";
     }
 
     auto f = mStream->getFramesWritten();

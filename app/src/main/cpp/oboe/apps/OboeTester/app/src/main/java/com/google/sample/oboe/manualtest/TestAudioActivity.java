@@ -177,7 +177,7 @@ abstract class TestAudioActivity extends Activity {
 
     @Override
     protected void onStop() {
-        Log.i(TAG, "onStop() called so stopping audio =========================");
+        Log.i(TAG, "onStop() called so stopping src.audio =========================");
         stopAudio();
         closeAudio();
         super.onStop();

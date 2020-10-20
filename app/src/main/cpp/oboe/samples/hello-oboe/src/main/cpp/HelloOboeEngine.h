@@ -40,11 +40,11 @@ public:
     // These methods reset the underlying stream with new properties
 
     /**
-     * Set the audio device which should be used for playback. Can be set to oboe::kUnspecified if
+     * Set the src.audio device which should be used for playback. Can be set to oboe::kUnspecified if
      * you want to use the default playback device (which is usually the built-in speaker if
-     * no other audio devices, such as headphones, are attached).
+     * no other src.audio devices, such as headphones, are attached).
      *
-     * @param deviceId the audio device id, can be obtained through an {@link AudioDeviceInfo} object
+     * @param deviceId the src.audio device id, can be obtained through an {@link AudioDeviceInfo} object
      * using Java/JNI.
     */
     void setDeviceId(int32_t deviceId);
@@ -57,15 +57,15 @@ public:
 
     /**
      * Calculate the current latency between writing a frame to the output stream and
-     * the same frame being presented to the audio hardware.
+     * the same frame being presented to the src.audio hardware.
      *
      * Here's how the calculation works:
      *
-     * 1) Get the time a particular frame was presented to the audio hardware
+     * 1) Get the time a particular frame was presented to the src.audio hardware
      * @see AudioStream::getTimestamp
-     * 2) From this extrapolate the time which the *next* audio frame written to the stream
+     * 2) From this extrapolate the time which the *next* src.audio frame written to the stream
      * will be presented
-     * 3) Assume that the next audio frame is written at the current time
+     * 3) Assume that the next src.audio frame is written at the current time
      * 4) currentLatency = nextFramePresentationTime - nextFrameWriteTime
      *
      * @return  Output Latency in Milliseconds

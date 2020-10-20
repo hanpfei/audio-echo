@@ -11,7 +11,7 @@ Before running the app from an Intent, it should be launched manually and a Roun
 
 * host computer
 * ADB USB cable
-* [loopback adapter](https://source.android.com/devices/audio/latency/loopback)
+* [loopback adapter](https://source.android.com/devices/src.audio/latency/loopback)
 * a 3.5 mm jack on the phone*
 
 \* If you don't have a 3.5 mm jack then you can use a USB-C to 3.5mm adapter. Then you will also need a USB switching device such as [TigerTail](https://go/tigertail).

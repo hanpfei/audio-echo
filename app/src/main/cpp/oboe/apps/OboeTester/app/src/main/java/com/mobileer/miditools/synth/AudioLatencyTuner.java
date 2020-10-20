@@ -101,7 +101,7 @@ public class AudioLatencyTuner {
     }
 
     /**
-     * @return number of times the audio buffer underflowed and glitched.
+     * @return number of times the src.audio buffer underflowed and glitched.
      */
     public int getUnderrunCount() {
         // Call using reflection.

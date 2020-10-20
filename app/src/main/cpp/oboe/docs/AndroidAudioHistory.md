@@ -1,7 +1,7 @@
-Android audio history
+Android src.audio history
 ===
 
-A list of important audio features, bugs, fixes and workarounds for various Android versions. [(List of all Android Versions)](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels)
+A list of important src.audio features, bugs, fixes and workarounds for various Android versions. [(List of all Android Versions)](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels)
 
 ### 10.0 Q - API 29
 - Fixed: Setting capacity of Legacy input streams < 4096 can prevent use of FAST path. https://github.com/google/oboe/issues/183. also ag/7116429
@@ -19,7 +19,7 @@ A list of important audio features, bugs, fixes and workarounds for various Andr
 - Fixed: Requesting a stereo recording stream can result in sub-optimal latency. 
 
 ### 8.0 Oreo - API 26 (August 21, 2017)
-- [AAudio API introduced](https://developer.android.com/ndk/guides/audio/aaudio/aaudio)
+- [AAudio API introduced](https://developer.android.com/ndk/guides/src.audio/aaudio/aaudio)
 - Bug: RefBase issue causes crash after stream closed. This why AAudio is not recommended for 8.0. Oboe will use OpenSL ES for 8.0 and earlier.
   https://github.com/google/oboe/issues/40
 - Bug: Requesting a stereo recording stream can result in sub-optimal latency. [Details](https://issuetracker.google.com/issues/68666622)

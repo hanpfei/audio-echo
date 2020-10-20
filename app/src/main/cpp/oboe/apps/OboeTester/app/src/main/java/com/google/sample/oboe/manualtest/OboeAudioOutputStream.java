@@ -17,7 +17,7 @@
 package com.google.sample.oboe.manualtest;
 
 /**
- * Native synthesizer and audio output.
+ * Native synthesizer and src.audio output.
  */
 public class OboeAudioOutputStream extends OboeAudioStream {
 

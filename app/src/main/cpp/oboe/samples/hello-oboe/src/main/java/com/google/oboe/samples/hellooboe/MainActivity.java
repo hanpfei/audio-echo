@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     private Timer mLatencyUpdater;
 
     /*
-     * Hook to user control to start / stop audio playback:
+     * Hook to user control to start / stop src.audio playback:
      *    touch-down: start, and keeps on playing
      *    touch-up: stop.
      * simply pass the events to native side.
@@ -248,7 +248,7 @@ public class MainActivity extends Activity {
      * Creates a list of buffer size options which can be used to populate a SimpleAdapter.
      * Each option has a description and a value. The description is always equal to the value,
      * except when the value is zero as this indicates that the buffer size should be set
-     * automatically by the audio engine
+     * automatically by the src.audio engine
      *
      * @return list of buffer size options
      */

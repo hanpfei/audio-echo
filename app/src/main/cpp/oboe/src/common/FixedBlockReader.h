@@ -25,7 +25,7 @@
  * Read from a fixed-size block to a variable sized block.
  *
  * This can be used to convert a pull data flow from fixed sized buffers to variable sized buffers.
- * An example would be an audio output callback that reads from the app.
+ * An example would be an src.audio output callback that reads from the app.
  */
 class FixedBlockReader : public FixedBlockAdapter
 {

@@ -22,7 +22,7 @@
 namespace iolib {
 
 /*
- * Defines an interface for audio data sources for the SimpleMultiPlayer class.
+ * Defines an interface for src.audio data sources for the SimpleMultiPlayer class.
  */
 class DataSource {
 public:

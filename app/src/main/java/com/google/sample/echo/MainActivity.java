@@ -127,7 +127,7 @@ public class MainActivity extends Activity
             }
         });
 
-        // initialize native audio system
+        // initialize native src.audio system
         updateNativeAudioUI();
 
         if (supportRecording) {

@@ -18,7 +18,7 @@
  * FlowGraph.h
  *
  * Processing node and ports that can be used in a simple data flow graph.
- * This was designed to work with audio but could be used for other
+ * This was designed to work with src.audio but could be used for other
  * types of data.
  */
 
@@ -36,7 +36,7 @@
 
 // TODO Move these classes into separate files.
 // TODO Review use of raw pointers for connect(). Maybe use smart pointers but need to avoid
-//      run-time deallocation in audio thread.
+//      run-time deallocation in src.audio thread.
 
 // Set this to 1 if using it inside the Android framework.
 // This code is kept here so that it can be moved easily between Oboe and AAudio.
@@ -268,7 +268,7 @@ public:
 /***************************************************************************/
 
 /**
- * An input port for streaming audio data.
+ * An input port for streaming src.audio data.
  * You can set a value that will be used for processing.
  * If you connect an output port to this port then its value will be used instead.
  */

@@ -16,7 +16,7 @@
 
 #include <cstring>
 #include <cstdlib>
-#include "audio_recorder.h"
+#include "opensles_recorder.h"
 /*
  * bqRecorderCallback(): called for every buffer is full;
  *                       pass directly to handler
@@ -65,19 +65,19 @@ AudioRecorder::AudioRecorder(SampleFormat *sampleFormat, SLEngineItf slEngine)
   SLAndroidDataFormat_PCM_EX format_pcm;
   ConvertToSLSampleFormat(&format_pcm, &sampleInfo_);
 
-  // configure audio source
+  // configure src.audio source
   SLDataLocator_IODevice loc_dev = {SL_DATALOCATOR_IODEVICE,
                                     SL_IODEVICE_AUDIOINPUT,
                                     SL_DEFAULTDEVICEID_AUDIOINPUT, NULL};
   SLDataSource audioSrc = {&loc_dev, NULL};
 
-  // configure audio sink
+  // configure src.audio sink
   SLDataLocator_AndroidSimpleBufferQueue loc_bq = {
       SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE, DEVICE_SHADOW_BUFFER_QUEUE_LEN};
 
   SLDataSink audioSnk = {&loc_bq, &format_pcm};
 
-  // create audio recorder
+  // create src.audio recorder
   // (requires the RECORD_AUDIO permission)
   const SLInterfaceID id[2] = {SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
                                SL_IID_ANDROIDCONFIGURATION};
@@ -179,7 +179,7 @@ SLboolean AudioRecorder::Stop(void) {
 }
 
 AudioRecorder::~AudioRecorder() {
-  // destroy audio recorder object, and invalidate all associated interfaces
+  // destroy src.audio recorder object, and invalidate all associated interfaces
   if (recObjectItf_ != NULL) {
     (*recObjectItf_)->Destroy(recObjectItf_);
   }

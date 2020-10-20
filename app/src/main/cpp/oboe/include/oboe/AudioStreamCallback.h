@@ -26,7 +26,7 @@ class AudioStream;
 /**
  * AudioStreamCallback defines a callback interface for:
  *
- * 1) moving data to/from an audio stream using `onAudioReady`
+ * 1) moving data to/from an src.audio stream using `onAudioReady`
  * 2) being alerted when a stream has an error using `onError*` methods
  *
  */
@@ -43,7 +43,7 @@ public:
      * For an input stream, this function should read and process numFrames of data
      * from the audioData buffer.
      *
-     * The audio data is passed through the buffer. So do NOT call read() or
+     * The src.audio data is passed through the buffer. So do NOT call read() or
      * write() on the stream that is making the callback.
      *
      * Note that numFrames can vary unless AudioStreamBuilder::setFramesPerCallback()
@@ -51,7 +51,7 @@ public:
      *
      * Also note that this callback function should be considered a "real-time" function.
      * It must not do anything that could cause an unbounded delay because that can cause the
-     * audio to glitch or pop.
+     * src.audio to glitch or pop.
      *
      * These are things the function should NOT do:
      * <ul>

@@ -22,7 +22,7 @@
 namespace iolib {
 
 /**
- * Provides audio data which will play through ONCE when triggered
+ * Provides src.audio data which will play through ONCE when triggered
  * Currently the sample data is assumed to be MONO
  */
 class OneShotSampleSource: public SampleSource {

@@ -1,7 +1,7 @@
 LiveEffect Sample
 ============
 
-This sample simply loops audio from input stream to output stream to demonstrate
+This sample simply loops src.audio from input stream to output stream to demonstrate
 the usage of the 2 stream interfaces.
 
 Screenshots
@@ -17,7 +17,7 @@ Screenshots
 
 
 ### Caveats
-When first time starting audio devices, the stream may not be stable.
+When first time starting src.audio devices, the stream may not be stable.
 The symptom is the strange callback pattern. This sample waits half a second
-for audio system to stablize. It is an estimate, it would vary on different platforms.
+for src.audio system to stablize. It is an estimate, it would vary on different platforms.
 

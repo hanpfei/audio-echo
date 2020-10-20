@@ -39,10 +39,10 @@ Note that these streams will probably not have low latency. So you may want to d
 
 ## Using Third Party Affects Processing
 
-There are many options for finding audio effects.
+There are many options for finding src.audio effects.
 
 - [Music DSP Archive](http://www.musicdsp.org/en/latest/Effects/index.html)
 - [Synthesis Toolkit in C++ (STK)](https://ccrma.stanford.edu/software/stk/index.html)
-- [Cookbook for Biquad Filters, EQ, etc.](https://www.w3.org/2011/audio/audio-eq-cookbook.html)
+- [Cookbook for Biquad Filters, EQ, etc.](https://www.w3.org/2011/src.audio/src.audio-eq-cookbook.html)
 - [Faust - language for generating effects, big library](https://faust.grame.fr/index.html)
 - [DAFX Digital Audio Effects conference proceedings](http://dafx.de/)
