@@ -3,13 +3,30 @@ project(echo LANGUAGES C CXX)
 
 add_library(echo
   SHARED
+    src/audio/oboe_audio/oboe_player.cpp
+    src/audio/oboe_audio/oboe_player.h
+    src/audio/oboe_audio/oboe_recorder.cpp
+    src/audio/oboe_audio/oboe_recorder.h
     src/audio/audio_common.cpp
+    src/audio/audio_common.h
+    src/audio/audio_device_defines.h
     src/audio/audio_effect.cpp
+    src/audio/audio_effect.h
+    src/audio/buf_manager.h
     src/audio/opensles_player.cpp
+    src/audio/opensles_player.h
     src/audio/opensles_recorder.cpp
+    src/audio/opensles_recorder.h
+    src/audio/wav_header.cpp
+    src/audio/wav_header.h
+    src/audio/wav_pcm_file_writer.cpp
+    src/audio/wav_pcm_file_writer.h
+    src/android_debug.h
     src/audio_jni.cpp
     src/debug_utils.cpp
-    src/jni_helper.cpp)
+    src/debug_utils.h
+    src/jni_helper.cpp
+    src/jni_helper.h)
 
 #include libraries needed for echo lib
 target_link_libraries(echo
