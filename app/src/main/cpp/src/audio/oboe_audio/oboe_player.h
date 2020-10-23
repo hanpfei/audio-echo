@@ -11,6 +11,7 @@
 
 #include "audio/audio_device_defines.h"
 
+class AudioDeviceBuffer;
 class PlayerCallback;
 
 class OboePlayer {
@@ -31,8 +32,10 @@ public:
   int MinSpeakerVolume(uint32_t &minVolume) const;
 
   int32_t SetPlayoutParameters(PlayoutParameters* params);
+  void AttachAudioBuffer(std::shared_ptr<AudioDeviceBuffer> audioBuffer);
 
 private:
+  friend class PlayerCallback;
   std::unique_ptr<PlayerCallback> player_callback_;
   oboe::ManagedStream audio_stream_;
 

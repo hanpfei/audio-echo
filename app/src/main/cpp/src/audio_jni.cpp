@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #include "audio/oboe_audio/oboe_player.h"
 #include "audio/oboe_audio/oboe_recorder.h"
-#include "audio/opensles_recorder.h"
-#include "audio/opensles_player.h"
+#include "audio/audio_device_buffer.h"
 #include "audio/audio_effect.h"
 #include "audio/audio_common.h"
+#include "audio/opensles_recorder.h"
+#include "audio/opensles_player.h"
 #include "jni_helper.h"
+#include "wav_recorded_data_writer_audio_transport.h"
 
 #include <SLES/OpenSLES_Android.h>
 #include <sys/types.h>
 #include <cassert>
 #include <cstring>
 #include <memory>
+#include <stdio.h>
+#include <linux/stat.h>
+#include <sys/stat.h>
 
 struct EchoAudioEngine {
   SLmilliHertz fastPathSampleRate_;
@@ -47,6 +53,11 @@ struct EchoAudioEngine {
   int64_t echoDelay_;
   float echoDecay_;
   AudioDelay *delayEffect_;
+
+  std::unique_ptr<OboePlayer> oboe_player;
+  std::unique_ptr<OboeRecorder> oboe_recorder;
+  std::shared_ptr<AudioDeviceBuffer> audio_device_buffer;
+  std::unique_ptr<WavRecordedDataWriterAudioTransport> recorded_data_writer;
 };
 static EchoAudioEngine engine;
 
@@ -121,9 +132,6 @@ MainActivity_configureEcho(JNIEnv *env, jclass type,
   return JNI_FALSE;
 }
 
-std::unique_ptr<OboePlayer> oboe_player;
-std::unique_ptr<OboeRecorder> oboe_recorder;
-
 JNIEXPORT jboolean JNICALL
 MainActivity_createSLBufferQueueAudioPlayer(
         JNIEnv *env, jclass type) {
@@ -144,10 +152,10 @@ MainActivity_createSLBufferQueueAudioPlayer(
 //    engine.player_->SetBufQueue(engine.recBufQueue_, engine.freeBufQueue_);
 //    engine.player_->RegisterCallback(EngineService, (void *) &engine);
 
-  if (!oboe_player) {
-    oboe_player = std::make_unique<OboePlayer>();
-    oboe_player->Init();
-    oboe_player->InitPlayout();
+  if (!engine.oboe_player) {
+    engine.oboe_player = std::make_unique<OboePlayer>();
+    engine.oboe_player->Init();
+    engine.oboe_player->InitPlayout();
   }
 
   return JNI_TRUE;
@@ -162,9 +170,9 @@ MainActivity_deleteSLBufferQueueAudioPlayer(
 //    engine.player_ = nullptr;
 //  }
 
-  if (oboe_player) {
-    oboe_player->Terminate();
-    oboe_player.reset();
+  if (engine.oboe_player) {
+    engine.oboe_player->Terminate();
+    engine.oboe_player.reset();
   }
 }
 
@@ -191,10 +199,31 @@ MainActivity_createAudioRecorder(JNIEnv *env,
 //  engine.recorder_->SetBufQueues(engine.freeBufQueue_, engine.recBufQueue_);
 //  engine.recorder_->RegisterCallback(EngineService, (void *) &engine);
 
-  if (!oboe_recorder) {
-    oboe_recorder = std::make_unique<OboeRecorder>();
-    oboe_recorder->Init();
-    oboe_recorder->InitRecording();
+  if (!engine.oboe_recorder) {
+    engine.oboe_recorder = std::make_unique<OboeRecorder>();
+    engine.oboe_recorder->Init();
+
+    RecordParameters record_parameters;
+    record_parameters.channels_ = engine.sampleChannels_;
+    record_parameters.sample_rate_hz_ = engine.fastPathSampleRate_ / 1000;
+
+    engine.oboe_recorder->SetRecordParameters(record_parameters);
+
+    engine.audio_device_buffer = std::make_shared<AudioDeviceBuffer>();
+    engine.oboe_recorder->AttachAudioBuffer(engine.audio_device_buffer);
+
+    int err = mkdir("/sdcard/com.google.sample.echo", S_IRWXG | S_IRWXO);
+
+    if (err != 0) {
+      LOGW("Create folder %s failed: %s", "/sdcard/com.google.sample.echo", strerror(errno));
+    }
+
+    engine.recorded_data_writer = std::make_unique<WavRecordedDataWriterAudioTransport>(
+            "/sdcard/com.google.sample.echo/recorded.wav");
+    engine.audio_device_buffer->RegisterAudioCallback(engine.recorded_data_writer.get());
+    engine.audio_device_buffer->StartRecording();
+
+    engine.oboe_recorder->InitRecording();
   }
 
   return JNI_TRUE;
@@ -207,9 +236,11 @@ MainActivity_deleteAudioRecorder(JNIEnv *env,
 //  if (engine.recorder_) delete engine.recorder_;
 //
 //  engine.recorder_ = nullptr;
-  if (oboe_recorder) {
-    oboe_recorder->Terminate();
-    oboe_recorder.reset();
+  if (engine.oboe_recorder) {
+    engine.oboe_recorder->Terminate();
+    engine.oboe_recorder.reset();
+    engine.audio_device_buffer.reset();
+    engine.recorded_data_writer.reset();
   }
 }
 
@@ -225,12 +256,12 @@ MainActivity_startPlay(JNIEnv *env, jclass type) {
 //    return;
 //  }
 //  engine.recorder_->Start();
-  if (oboe_recorder) {
-    oboe_recorder->StartRecording();
+  if (engine.oboe_recorder) {
+    engine.oboe_recorder->StartRecording();
   }
 
-  if (oboe_player) {
-    oboe_player->StartPlayout();
+  if (engine.oboe_player) {
+    engine.oboe_player->StartPlayout();
   }
 }
 
@@ -245,12 +276,12 @@ MainActivity_stopPlay(JNIEnv *env, jclass type) {
 //  engine.recorder_ = NULL;
 //  engine.player_ = NULL;
 
-  if (oboe_recorder) {
-    oboe_recorder->StopRecording();
+  if (engine.oboe_recorder) {
+    engine.oboe_recorder->StopRecording();
   }
 
-  if (oboe_player) {
-    oboe_player->StopPlayout();
+  if (engine.oboe_player) {
+    engine.oboe_player->StopPlayout();
   }
 }
 

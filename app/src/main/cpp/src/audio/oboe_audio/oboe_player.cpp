@@ -17,11 +17,12 @@ class PlayerCallback : public oboe::AudioStreamCallback {
           oboe::AudioStream *oboeStream,
           void *audioData,
           int32_t numFrames) override {
-    LOGI("PlayerCallback onAudioReady numFrames %d", numFrames);
-    int16_t *data = reinterpret_cast<int16_t *>(audioData);
-    for (int i = 0; i < numFrames; ++i) {
-      data[i]= 0xF1AC;
-    }
+//    int16_t *data = reinterpret_cast<int16_t *>(audioData);
+    // Generate random numbers (white noise) centered around zero.
+//    const float amplitude = 0.2f;
+//    for (int i = 0; i < numFrames; ++i){
+//      data[i] = static_cast<int16_t>((((float)drand48() - 0.5f) * 2 * amplitude) * 32768);
+//    }
     return oboe::DataCallbackResult::Continue;
   }
 

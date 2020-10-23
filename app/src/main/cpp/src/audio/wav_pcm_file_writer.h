@@ -13,8 +13,8 @@ class WavPcmFileWriter {
                    uint32_t sampleRateHz);
   virtual ~WavPcmFileWriter();
 
-  void openWriter();
-  bool writeAudioPcmFrame(void* payload_data, size_t sampleCount, size_t bytesPerSample);
+  bool openWriter();
+  bool writeAudioPcmFrame(const void* payload_data, size_t sampleCount, size_t bytesPerSample);
   void closeWriter();
 
  private:

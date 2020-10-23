@@ -9,6 +9,8 @@ add_library(echo
     src/audio/oboe_audio/oboe_recorder.h
     src/audio/audio_common.cpp
     src/audio/audio_common.h
+    src/audio/audio_device_buffer.cpp
+    src/audio/audio_device_buffer.h
     src/audio/audio_device_defines.h
     src/audio/audio_effect.cpp
     src/audio/audio_effect.h
@@ -26,7 +28,9 @@ add_library(echo
     src/debug_utils.cpp
     src/debug_utils.h
     src/jni_helper.cpp
-    src/jni_helper.h)
+    src/jni_helper.h
+    src/wav_recorded_data_writer_audio_transport.cpp
+    src/wav_recorded_data_writer_audio_transport.h)
 
 #include libraries needed for echo lib
 target_link_libraries(echo

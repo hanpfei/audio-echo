@@ -26,9 +26,13 @@ WavHeader WavPcmFileWriter::createWAVHeader() {
   return wav_header_;
 }
 
-void WavPcmFileWriter::openWriter() {
+bool WavPcmFileWriter::openWriter() {
   unsigned char wav_header[44];
-  wav_file_ = fopen(output_file_path_.c_str(), "w+");
+  wav_file_ = fopen(output_file_path_.c_str(), "wb+");
+
+  if (wav_file_ == nullptr) {
+    return false;
+  }
 
   WavHeader wavHeader = createWAVHeader();
   makeWAVHeader(wav_header, wavHeader);
@@ -36,9 +40,10 @@ void WavPcmFileWriter::openWriter() {
   if (!fwrite(wav_header, sizeof(wav_header), 1, wav_file_)) {
     printf("Error writing WAV header: %s\n", std::strerror(errno));
   }
+  return true;
 }
 
-bool WavPcmFileWriter::writeAudioPcmFrame(void* payload_data, size_t sampleCount,
+bool WavPcmFileWriter::writeAudioPcmFrame(const void* payload_data, size_t sampleCount,
                                           size_t bytesPerSample) {
   received_sample_count_ += sampleCount;
   if (!fwrite(payload_data, sampleCount * bytesPerSample, 1, wav_file_)) {
