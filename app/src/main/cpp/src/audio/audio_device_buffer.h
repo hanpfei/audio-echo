@@ -59,6 +59,8 @@ class AudioDeviceBuffer {
 
   std::unique_ptr<int16_t[]> recorded_data_buffer_;
   int64_t recorded_data_pos_;
+
+  int64_t playout_request_sample_per_channel_;
 };
 
 #endif //NATIVE_AUDIO_AUDIODEVICEBUFFER_H

@@ -57,7 +57,7 @@ class AudioTransport {
   virtual size_t send_num_channels() const { return 0; }
   virtual int send_sample_rate_hz() const { return 0; }
 
- protected:
+ public:
   virtual ~AudioTransport() {}
 };
 

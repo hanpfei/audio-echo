@@ -15,10 +15,14 @@ AudioDeviceBuffer::AudioDeviceBuffer() :
         playing_(0),
         recording_(0),
         recorded_data_buffer_(nullptr),
-        recorded_data_pos_(0) {
+        recorded_data_pos_(0),
+        playout_request_sample_per_channel_(0) {
 }
 
 AudioDeviceBuffer::~AudioDeviceBuffer() {
+  if (playing_ || recording_) {
+    LOGE("Still playing or recording.");
+  }
 }
 
 int32_t AudioDeviceBuffer::RegisterAudioCallback(AudioTransport* audio_callback) {
@@ -178,10 +182,41 @@ int32_t AudioDeviceBuffer::DeliverRecordedData() {
 
 int32_t AudioDeviceBuffer::RequestPlayoutData(size_t samples_per_channel) {
   std::lock_guard<std::mutex> lk(lock_);
+  if (playout_request_sample_per_channel_ != 0) {
+    LOGW("Last playout data request has not been completed.");
+  }
+  playout_request_sample_per_channel_ = samples_per_channel;
   return 0;
 }
 
 int32_t AudioDeviceBuffer::GetPlayoutData(void *audio_buffer) {
   std::lock_guard<std::mutex> lk(lock_);
+  if (playout_request_sample_per_channel_ == 0) {
+    LOGW("No playout data request has been sent.");
+    return -1;
+  }
+
+  if (play_channels_ == 0 || play_sample_rate_ == 0) {
+    LOGE("No playout channels or sample rate initialized.");
+    return -1;
+  }
+
+  if (!audio_transport_cb_) {
+    LOGE("No audio transport callback registered.");
+    return -1;
+  }
+  size_t nSamplesOut = 0;
+  int64_t elapsed_time_ms = 0;
+  int64_t ntp_time_ms = 0;
+  audio_transport_cb_->NeedMorePlayData(playout_request_sample_per_channel_,
+                                        sizeof(int16_t) * play_channels_,
+                                        play_channels_,
+                                        play_sample_rate_,
+                                        audio_buffer,
+                                        nSamplesOut,  // NOLINT
+                                        &elapsed_time_ms,
+                                        &ntp_time_ms);
+
+  playout_request_sample_per_channel_ = 0;
   return 0;
 }

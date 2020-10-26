@@ -23,6 +23,7 @@
 #include "audio/opensles_player.h"
 #include "jni_helper.h"
 #include "wav_recorded_data_writer_audio_transport.h"
+#include "audio_echo_transport.h"
 
 #include <SLES/OpenSLES_Android.h>
 #include <sys/types.h>
@@ -57,7 +58,7 @@ struct EchoAudioEngine {
   std::unique_ptr<OboePlayer> oboe_player;
   std::unique_ptr<OboeRecorder> oboe_recorder;
   std::shared_ptr<AudioDeviceBuffer> audio_device_buffer;
-  std::unique_ptr<WavRecordedDataWriterAudioTransport> recorded_data_writer;
+  std::unique_ptr<AudioTransport> audio_transport;
 };
 static EchoAudioEngine engine;
 
@@ -132,6 +133,31 @@ MainActivity_configureEcho(JNIEnv *env, jclass type,
   return JNI_FALSE;
 }
 
+std::unique_ptr<AudioTransport> CreateAudioTransport(int type) {
+  std::unique_ptr<AudioTransport> audio_transport;
+  switch (type) {
+    case 1: {
+      audio_transport = std::make_unique<WavRecordedDataWriterAudioTransport>(
+              "/sdcard/com.google.sample.echo/recorded.wav");
+      int err = mkdir("/sdcard/com.google.sample.echo", S_IRWXG | S_IRWXO);
+      if (err != 0) {
+        LOGW("Create folder %s failed: %s", "/sdcard/com.google.sample.echo", strerror(errno));
+      }
+    }
+      break;
+    case 2:
+      audio_transport = std::make_unique<AudioEchoTransport>();
+      break;
+    default:
+      break;
+  }
+  return audio_transport;
+}
+
+std::unique_ptr<AudioTransport> CreateAudioTransport() {
+  return CreateAudioTransport(2);
+}
+
 JNIEXPORT jboolean JNICALL
 MainActivity_createSLBufferQueueAudioPlayer(
         JNIEnv *env, jclass type) {
@@ -155,6 +181,22 @@ MainActivity_createSLBufferQueueAudioPlayer(
   if (!engine.oboe_player) {
     engine.oboe_player = std::make_unique<OboePlayer>();
     engine.oboe_player->Init();
+
+    PlayoutParameters playout_parameters;
+    playout_parameters.channels_ = engine.sampleChannels_;
+    playout_parameters.sample_rate_hz_ = engine.fastPathSampleRate_ / 1000;
+
+    engine.oboe_player->SetPlayoutParameters(playout_parameters);
+
+    if (!engine.audio_device_buffer) {
+      engine.audio_device_buffer = std::make_shared<AudioDeviceBuffer>();
+      engine.audio_transport = CreateAudioTransport();
+      engine.audio_device_buffer->RegisterAudioCallback(engine.audio_transport.get());
+    }
+
+    engine.oboe_player->AttachAudioBuffer(engine.audio_device_buffer);
+    engine.audio_device_buffer->StartPlayout();
+
     engine.oboe_player->InitPlayout();
   }
 
@@ -206,21 +248,15 @@ MainActivity_createAudioRecorder(JNIEnv *env,
     RecordParameters record_parameters;
     record_parameters.channels_ = engine.sampleChannels_;
     record_parameters.sample_rate_hz_ = engine.fastPathSampleRate_ / 1000;
-
     engine.oboe_recorder->SetRecordParameters(record_parameters);
 
-    engine.audio_device_buffer = std::make_shared<AudioDeviceBuffer>();
-    engine.oboe_recorder->AttachAudioBuffer(engine.audio_device_buffer);
-
-    int err = mkdir("/sdcard/com.google.sample.echo", S_IRWXG | S_IRWXO);
-
-    if (err != 0) {
-      LOGW("Create folder %s failed: %s", "/sdcard/com.google.sample.echo", strerror(errno));
+    if (!engine.audio_device_buffer) {
+      engine.audio_device_buffer = std::make_shared<AudioDeviceBuffer>();
+      engine.audio_transport = CreateAudioTransport();
+      engine.audio_device_buffer->RegisterAudioCallback(engine.audio_transport.get());
     }
 
-    engine.recorded_data_writer = std::make_unique<WavRecordedDataWriterAudioTransport>(
-            "/sdcard/com.google.sample.echo/recorded.wav");
-    engine.audio_device_buffer->RegisterAudioCallback(engine.recorded_data_writer.get());
+    engine.oboe_recorder->AttachAudioBuffer(engine.audio_device_buffer);
     engine.audio_device_buffer->StartRecording();
 
     engine.oboe_recorder->InitRecording();
@@ -239,8 +275,10 @@ MainActivity_deleteAudioRecorder(JNIEnv *env,
   if (engine.oboe_recorder) {
     engine.oboe_recorder->Terminate();
     engine.oboe_recorder.reset();
+    engine.audio_device_buffer->StopRecording();
+    engine.audio_device_buffer->StopPlayout();
     engine.audio_device_buffer.reset();
-    engine.recorded_data_writer.reset();
+    engine.audio_transport.reset();
   }
 }
 

@@ -24,6 +24,8 @@ add_library(echo
     src/audio/wav_pcm_file_writer.cpp
     src/audio/wav_pcm_file_writer.h
     src/android_debug.h
+    src/audio_echo_transport.cpp
+    src/audio_echo_transport.h
     src/audio_jni.cpp
     src/debug_utils.cpp
     src/debug_utils.h
