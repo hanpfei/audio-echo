@@ -151,7 +151,6 @@ int OboeRecorder::InitRecording() {
 //  stream_builder_->setChannelConversionAllowed(false);
   stream_builder_->setSampleRate(sample_rate);
   stream_builder_->setFramesPerCallback(sample_rate / 100);
-  stream_builder_->setUsage(oboe::Usage::VoiceCommunication);
 
   uint32_t audio_source = record_parameters_.audio_source_;
   stream_builder_->setInputPreset(GetInputPresetFromAudioSource(audio_source));
